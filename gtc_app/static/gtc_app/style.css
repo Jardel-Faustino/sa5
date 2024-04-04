@@ -8,9 +8,54 @@
 html,body {
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: rgb(153,153,153);
     background-size: 100%;
     background-position: center;
     margin:0;
     font-family: "Courier New";
+}
+/* Arquivo Menu */
+.menu {
+    width: 100%; /* Define a largura da div .menu como 100% */
+    height: 300px; /* Define a altura da div .menu como 300 pixels */
+    /* Define uma imagem de fundo para a div .menu */
+    background-image: url("gtc_app/img/gtc-banner.png");
+    background-size: cover; /* Define o tamanho da imagem de fundo como cobrir */
+    background-repeat: no-repeat;  /* Define que a imagem de fundo não deve se repetir */
+    background-position: top; /* Define a posição da imagem de fundo como no topo */
+    border: 2px solid rgb(37, 109, 243); /* Adiciona uma borda à div .menu */
+    margin: 0; /* Remove as margens padrão da div .menu */
+    position: relative; /* Define a posição da div .menu como relativa */
+    padding-bottom: 20px; /* Adiciona um espaço para os botões */
+}
+.botoes {
+    position: absolute; /* Define a posição dos botões como absoluta */
+    bottom: 0; /* Coloca os botões na parte inferior da div .menu */
+    left: 50%; /* Alinha os botões horizontalmente */
+    transform: translateX(-50%); /* Centraliza os botões */
+}
+.botao {
+    /* Define uma imagem de fundo para os botões */
+    background-image: url("https://i.pinimg.com/originals/de/0b/35/de0b35a6feca24ac968e1e0598482dc6.jpg"); 
+    color: rgb(38, 38, 255); /* Define a cor do texto dos botões */
+    -webkit-text-stroke: 1px rgb(38, 38, 255); /* Adiciona um contorno ao texto dos botões */
+    border: 2px solid rgb(37, 109, 243); /* Adiciona uma borda aos botões */
+    border-radius: 10px; /* Adiciona um raio de borda aos botões */
+    padding: 10px 20px; /* Adiciona preenchimento aos botões */
+    margin-right: 10px; /* Adiciona uma margem à direita dos botões */
+    text-decoration: none; /* Remove a decoração de texto dos botões */
+}
+.botao:last-child {
+    margin-right: 0; /* Remove a margem à direita do último botão */
+}
+.botao.ativo {
+    /* Define uma imagem de fundo para os botões */
+    background-image: url("https://i.pinimg.com/originals/de/0b/35/de0b35a6feca24ac968e1e0598482dc6.jpg"); 
+    color: rgb(20, 20, 114); /* Define a cor do texto dos botões */
+    -webkit-text-stroke: 1px rgb(20, 20, 114); /* Adiciona um contorno ao texto dos botões */
+    border: 2px solid rgb(20, 20, 114); /* Adiciona uma borda aos botões */
+    border-radius: 10px; /* Adiciona um raio de borda aos botões */
+    padding: 10px 20px; /* Adiciona preenchimento aos botões */
+    margin-right: 10px; /* Adiciona uma margem à direita dos botões */
+    text-decoration: none; /* Remove a decoração de texto dos botões */
 }

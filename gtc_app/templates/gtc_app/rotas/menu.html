@@ -3,10 +3,14 @@
 <div class="menu">
     <!-- Botões -->
     <div class="botoes">
-        <a href="{% url "principal" %}" class="botao"><b>Página principal</b></a>
-        <a href="{% url "cadastrar" %}" class="botao"><b>Cadastrar</b></a>
-        <a href="{% url "atualizar" %}" class="botao"><b>Atualizar</b></a>
-        <a href="{% url "deletar" %}" class="botao"><b>Deletar</b></a>
-        <a href="{% url "pesquisar" %}" class="botao"><b>Pesquisar</b></a>
+        <!-- Cria um LINK para a página "pagina principal" e definir a CLASS BOTAO para poder editar os LINK no CSS -->
+        <!-- O "IF" serve para modificar a classe do botão para 'ativo' se a página atual for diferente de "pagina principal" -->
+        <a href="{% url "principal" %}" class="botao ativo{% if pagina_ativa != 'pricipal' %}botao{% endif %}"><b>Página principal</b></a>
+        <!-- Cria LINKs para a páginas e definir a CLASS BOTAO para poder editar os LINKs no CSS -->
+        <!-- O "IF" serve para modificar a classe do botão para 'ativo' se a página atual for 'personagens' -->
+        <a href="{% url "cadastrar" %}" class="botao {% if pagina_ativa == 'cadastrar' %}ativo{% endif %}"><b>Cadastrar</b></a>
+        <a href="{% url "atualizar" %}" class="botao {% if pagina_ativa == 'atualizar' %}ativo{% endif %}"><b>Atualizar</b></a>
+        <a href="{% url "deletar" %}" class="botao {% if pagina_ativa == 'deletar' %}ativo{% endif %}"><b>Deletar</b></a>
+        <a href="{% url "pesquisar" %}" class="botao {% if pagina_ativa == 'pesquisar' %}ativo{% endif %}"><b>Pesquisar</b></a>
     </div>
 </div>

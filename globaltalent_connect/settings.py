@@ -114,6 +114,9 @@ USE_TZ = True
 # Arquivos estáticos (CSS, JavaScript, Imagens)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR, 'gtc_app/img/',
+]
 
 # Tipo de campo de chave primária padrão
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
