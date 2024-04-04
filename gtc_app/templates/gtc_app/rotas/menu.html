@@ -1,3 +1,12 @@
 {% load static %}
 
-<div class="box2"></div>
+<div class="menu">
+    <!-- Botões -->
+    <div class="botoes">
+        <a href="{% url "principal" %}" class="botao"><b>Página principal</b></a>
+        <a href="{% url "cadastrar" %}" class="botao"><b>Cadastrar</b></a>
+        <a href="{% url "atualizar" %}" class="botao"><b>Atualizar</b></a>
+        <a href="{% url "deletar" %}" class="botao"><b>Deletar</b></a>
+        <a href="{% url "pesquisar" %}" class="botao"><b>Pesquisar</b></a>
+    </div>
+</div>

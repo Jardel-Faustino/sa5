@@ -5,10 +5,10 @@ from gtc_app.views import index, menu, principal, cadastrar, atualizar, deletar,
 
 urlpatterns = [
     path('', index),
-    path('menu', menu),
-    path('principal', principal),
-    path('cadastrar', cadastrar),
-    path('atualizar', atualizar),
-    path('deletar', deletar),
-    path('pesquisar', pesquisar),
+    path('menu', menu, name= 'menu'),
+    path('principal', principal, name= 'principal'),
+    path('cadastrar', cadastrar, name='cadastrar'),
+    path('atualizar', atualizar, name='atualizar'),
+    path('deletar', deletar, name='deletar'),
+    path('pesquisar', pesquisar, name='pesquisar'),
 ]

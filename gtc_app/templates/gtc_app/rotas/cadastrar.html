@@ -1,0 +1,29 @@
+{% load static %}
+{% include "gtc_app/rotas/menu.html" %}
+
+    <div class="cadastro">
+
+        <!-- Formulário de cadastro de usuário -->
+        <form action="processar_formulario.php" method="post">
+            <label for="nome">Nome:</label> <!-- Rótulo para o campo de nome -->
+            <input type="text" id="nome" name="nome" required><br><br> <!-- Campo de entrada para o nome -->
+
+            <label for="data_nascimento">Data de Nascimento:</label> <!-- Rótulo para o campo de data de nascimento -->
+            <input type="date" id="data_nascimento" name="data_nascimento" required><br><br> <!-- Campo de entrada para a data de nascimento -->
+
+            <label for="email">E-mail:</label> <!-- Rótulo para o campo de e-mail -->
+            <input type="email" id="email" name="email" required><br><br> <!-- Campo de entrada para o e-mail -->
+
+            <label for="pais">País que deseja trabalhar:</label> <!-- Rótulo para o menu suspenso de países -->
+            <select id="pais" name="pais" required> <!-- Menu suspenso para selecionar o país -->
+                <option value="" disabled selected>Selecione o país</option> <!-- Opção padrão -->
+                <option value="Estados Unidos">Estados Unidos</option> <!-- Opção para Estados Unidos -->
+                <option value="Canadá">Canadá</option> <!-- Opção para Canadá -->
+                <option value="Reino Unido">Reino Unido</option> <!-- Opção para Reino Unido -->
+                <!-- Adicione mais opções de países conforme necessário -->
+            </select><br><br>
+
+            <input type="submit" value="Cadastrar"> <!-- Botão para enviar o formulário -->
+        </form> <!-- Fim do formulário -->
+
+    </div>
