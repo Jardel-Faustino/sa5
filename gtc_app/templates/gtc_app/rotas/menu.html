@@ -1,8 +1,7 @@
 {% load static %}
 
 <div class="menu">
-    <img src="{% static "gtc_app/img/banner.png" %}" alt="Banner" class="banner">
-    
+
     <!-- Botões -->
     <div class="botoes">    
         <!-- Cria um LINK para a página "pagina principal" e definir a CLASS BOTAO para poder editar os LINK no CSS -->
@@ -15,7 +14,6 @@
         <a href="{% url "deletar" %}" class="botao {% if pagina_ativa == 'deletar' %}ativo{% endif %}"><b>Deletar</b></a>
         <a href="{% url "pesquisar" %}" class="botao {% if pagina_ativa == 'pesquisar' %}ativo{% endif %}"><b>Pesquisar</b></a>
     </div>
-    
-    <img src="{% static "gtc_app/img/logo1.png" %}" alt="logo1" class="logo1">
+    </div class="box1"><img src="{% static "gtc_app/img/logo1.png" %}" alt="logo1" class="logo1"></div>
     
 </div>
