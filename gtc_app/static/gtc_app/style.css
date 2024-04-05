@@ -9,7 +9,8 @@ html,body {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
-    background-color: rgb(153,153,153);
+    /*background-color: rgb(50,50,50);*/
+    background-color: red;
     background-size: 100%;
     background-position: center;
     margin:0;
@@ -29,7 +30,7 @@ html,body {
     position: relative; /* Define a posição da div .menu como relativa */
     padding-bottom: 20px; /* Adiciona um espaço para os botões */
 }
-.box1{
+.boxb{
     position: absolute; /* Define a posição dos botões como absoluta */
     width: 100%;
     height: 28px;
@@ -49,6 +50,31 @@ html,body {
     left: 50%; /* Alinha os botões horizontalmente */
     transform: translateX(-50%); /* Centraliza os botões */
     z-index: 2; /* Definir a .botoes como a sugunda na ordem de empilhamento dos elementos*/
+}
+.botao {
+    /* Define uma imagem de fundo para os botões */
+     
+    color: rgb(38, 38, 255); /* Define a cor do texto dos botões */
+    -webkit-text-stroke: 1px rgb(38, 38, 255); /* Adiciona um contorno ao texto dos botões */
+    border: 2px solid rgb(37, 109, 243); /* Adiciona uma borda aos botões */
+    border-radius: 10px; /* Adiciona um raio de borda aos botões */
+    padding: 10px 20px; /* Adiciona preenchimento aos botões */
+    margin-right: 10px; /* Adiciona uma margem à direita dos botões */
+    text-decoration: none; /* Remove a decoração de texto dos botões */
+}
+.botao:last-child {
+    margin-right: 0; /* Remove a margem à direita do último botão */
+}
+.botao.ativo {
+    /* Define uma imagem de fundo para os botões */
+    
+    color: rgb(20, 20, 114); /* Define a cor do texto dos botões */
+    -webkit-text-stroke: 1px rgb(20, 20, 114); /* Adiciona um contorno ao texto dos botões */
+    border: 2px solid rgb(20, 20, 114); /* Adiciona uma borda aos botões */
+    border-radius: 10px; /* Adiciona um raio de borda aos botões */
+    padding: 10px 20px; /* Adiciona preenchimento aos botões */
+    margin-right: 10px; /* Adiciona uma margem à direita dos botões */
+    text-decoration: none; /* Remove a decoração de texto dos botões */
 }
 .logo1 {
     position: absolute; /* Define a posição dos botões como absoluta */
