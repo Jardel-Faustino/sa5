@@ -8,9 +8,7 @@
 html,body {
     width: 100%;
     height: 100%;
-    overflow-x: hidden;
-    /*background-color: rgb(50,50,50);*/
-    background-color: red;
+    background-color: rgb(55,55,55);
     background-size: 100%;
     background-position: center;
     margin:0;
@@ -19,10 +17,10 @@ html,body {
 /* Arquivo Menu */
 .menu {
     width: 100%; /* Define a largura da div .menu como 100% */
-    height: 280px; /* Define a altura da div .menu como 280 pixels */
+    height: 259px; /* Define a altura da div .menu como 280 pixels */
     /* Define uma imagem de fundo para a div .menu */
     background-image: url(img/banner.png);
-    background-size: 100% 90%; /* Define o tamanho da imagem de fundo como cobrir */
+    background-size: contain; /* Define o tamanho da imagem de fundo como cobrir */
     background-repeat: no-repeat;  /* Define que a imagem de fundo não deve se repetir */
     background-position: top; /* Define a posição da imagem de fundo como no topo */
     border: 2px solid rgb(28, 28, 28); /* Adiciona uma borda à div .menu */
@@ -33,8 +31,8 @@ html,body {
 .boxb{
     position: absolute; /* Define a posição dos botões como absoluta */
     width: 100%;
-    height: 28px;
-    margin-top: -2.9%;
+    height: 29px;
+    margin-top: -3.8%;
     border-top: 2px solid rgb(28, 28, 28);
     background-color: rgb(48, 204, 252);
     top: 50%; /* Ajusta a posição vertical da logo1 */
@@ -44,7 +42,7 @@ html,body {
 }
 .botoes {
     position: absolute; /* Define a posição dos botões como absoluta */
-    margin-top: 255px;
+    margin-top: 235px;
     margin-left: 55px;
     bottom: 2; /* Coloca os botões na parte inferior da div .menu */
     left: 50%; /* Alinha os botões horizontalmente */
@@ -54,9 +52,8 @@ html,body {
 .botao {
     /* Define uma imagem de fundo para os botões */
      
-    color: rgb(38, 38, 255); /* Define a cor do texto dos botões */
-    -webkit-text-stroke: 1px rgb(38, 38, 255); /* Adiciona um contorno ao texto dos botões */
-    border: 2px solid rgb(37, 109, 243); /* Adiciona uma borda aos botões */
+    color: rgb(70, 70, 70); /* Define a cor do texto dos botões */
+    /*-webkit-text-stroke: 1px rgb(38, 38, 255);  Adiciona um contorno ao texto dos botões */
     border-radius: 10px; /* Adiciona um raio de borda aos botões */
     padding: 10px 20px; /* Adiciona preenchimento aos botões */
     margin-right: 10px; /* Adiciona uma margem à direita dos botões */
@@ -68,9 +65,8 @@ html,body {
 .botao.ativo {
     /* Define uma imagem de fundo para os botões */
     
-    color: rgb(20, 20, 114); /* Define a cor do texto dos botões */
-    -webkit-text-stroke: 1px rgb(20, 20, 114); /* Adiciona um contorno ao texto dos botões */
-    border: 2px solid rgb(20, 20, 114); /* Adiciona uma borda aos botões */
+    color: rgb(70, 70, 70); /* Define a cor do texto dos botões */
+    /*-webkit-text-stroke: 1px rgb(38, 38, 255);  Adiciona um contorno ao texto dos botões */
     border-radius: 10px; /* Adiciona um raio de borda aos botões */
     padding: 10px 20px; /* Adiciona preenchimento aos botões */
     margin-right: 10px; /* Adiciona uma margem à direita dos botões */
@@ -86,4 +82,10 @@ html,body {
     top: 50%; /* Ajusta a posição vertical da logo1 */
     transform: translateY(-50%); /* Centraliza verticalmente a logo1 */
     z-index: 3; /* Definir a .logo1 como a terceira na ordem de empilhamento dos elementos*/
+}
+
+/* Págiana principal */
+.principal{
+    width: 100%;
+    background-color: aqua;
 }
