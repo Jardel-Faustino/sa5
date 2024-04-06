@@ -6,7 +6,7 @@
     <div class="botoes">    
         <!-- Cria um LINK para a página "pagina principal" e definir a CLASS BOTAO para poder editar os LINK no CSS -->
         <!-- O "IF" serve para modificar a classe do botão para 'ativo' se a página atual for diferente de "pagina principal" -->
-        <a href="{% url "principal" %}" class="botao ativo{% if pagina_ativa != 'pricipal' %}botao{% endif %}"><b>Página principal</b></a>
+        <a href="{% url "principal" %}" class="botao ativo{% if pagina_ativa != 'principal' %}botao{% endif %}"><b>Página principal</b></a>
         <!-- Cria LINKs para a páginas e definir a CLASS BOTAO para poder editar os LINKs no CSS -->
         <!-- O "IF" serve para modificar a classe do botão para 'ativo' se a página atual for 'personagens' -->
         <a href="{% url "cadastrar" %}" class="botao {% if pagina_ativa == 'cadastrar' %}ativo{% endif %}"><b>Cadastrar</b></a>
