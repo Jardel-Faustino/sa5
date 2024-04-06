@@ -1,15 +1,11 @@
 from django.shortcuts import render
 
 # Criar as Visualizações das Rotas do nosso Sistema de Cadastro GTC.
-
-def index (request):
-    return render(request, "gtc_app/global/index.html",)
-
 def menu (request):
     return render(request, "gtc_app/rotas/menu.html")
 
 def principal (request):
-    return render(request, "gtc_app/rotas/principal.html", {'pagina_ativa': 'principal'})
+    return render(request, "gtc_app/global/principal.html", {'pagina_ativa': 'principal'})
 
 def cadastrar (request):
     return render(request, "gtc_app/rotas/cadastrar.html", {'pagina_ativa': 'cadastrar'})

@@ -56,10 +56,7 @@ html,body {
 }
 
 .botao {
-    /* Define uma imagem de fundo para os botões */
-     
-    color: rgb(70, 70, 70); /* Define a cor do texto dos botões */
-    /*-webkit-text-stroke: 1px rgb(38, 38, 255); /* Adiciona um contorno ao texto dos botões */
+    color: rgb(70, 70, 70); /* Define a cor do texto dos botões */    
     border-radius: 10px; /* Adiciona um raio de borda aos botões */
     padding: 10px 20px; /* Adiciona preenchimento aos botões */
     margin-right: -2vw; /* Adiciona uma margem à direita dos botões */
@@ -76,15 +73,7 @@ html,body {
     border-radius: 10px; /* Adiciona um raio de borda aos botões */
     padding: 10px 20px; /* Adiciona preenchimento aos botões */
     margin-right: -2vw; /* Adiciona uma margem à direita dos botões */
-    text-shadow: 
-        -1px -1px 0 rgb(55, 55, 55),  
-         1px -1px 0 rgb(55, 55, 55),
-        -1px  1px 0 rgb(55, 55, 55),
-         1px  1px 0 rgb(55, 55, 55); /* Adiciona uma sombra ao texto para simular uma borda */
     text-decoration: none; /* Remove a decoração de texto dos botões */
-}
-.botao.botao.ativo:last-child {
-    margin-right: 0; /* Remove a margem à direita do último botão */ 
 }
 .logo1 {
     position: absolute; /* Define a posição dos botões como absoluta */
