@@ -79,3 +79,24 @@ html,body {
     transform: translateY(-50%); /* Centraliza verticalmente a logo1 */
     z-index: 3; /* Definir a .logo1 como a terceira na ordem de empilhamento dos elementos*/
 }
+/* Página Principla */
+.principal {
+    width: 80vw;
+    
+}
+/* Cadastrar */
+.cadastrar {
+
+}
+/* Atualizar */
+.atualiazar {
+
+}
+/* Deletar */
+.deletar {
+
+}
+/* Pesquisar */
+.pesquisar {
+
+}
