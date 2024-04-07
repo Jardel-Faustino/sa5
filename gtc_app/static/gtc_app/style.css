@@ -8,7 +8,10 @@
 html,body {
     width: 100%;
     height: 100%;
-    background-color: red;
+    background-color: rgb(60, 60, 60);
+    border-bottom: 2px solid rgb(28, 28, 28);
+    border-left: 2px solid rgb(28, 28, 28);
+    border-right: 2px solid rgb(28, 28, 28);
     background-size: 100%;
     background-position: center;
     margin:0;
@@ -81,22 +84,46 @@ html,body {
 }
 /* Página Principla */
 .principal {
-    width: 80vw;
-
+    width: 90vw;
+    height: 100vh;
+    margin-left: 4vw;
+    background-color: rgb(80, 80, 80);
+    border-style: groove;
+    border-color: rgb(48, 204, 252);
 }
 /* Cadastrar */
 .cadastrar {
-    width: 80vw;
+    width: 90vw;
+    height: 100vh;
+    margin-left: 4vw;
+    background-color: rgb(80, 80, 80);
+    border-style: groove;
+    border-color: rgb(48, 204, 252);
 }
 /* Atualizar */
-.atualiazar {
-    width: 80vw;
+.atualizar {
+    width: 90vw;
+    height: 100vh;
+    margin-left: 4vw;
+    background-color: rgb(80, 80, 80);
+    border-style: groove;
+    border-color: rgb(48, 204, 252);
 }
 /* Deletar */
 .deletar {
-    width: 80vw;
+    width: 90vw;
+    height: 100vh;
+    margin-left: 4vw;
+    background-color: rgb(80, 80, 80);
+    border-style: groove;
+    border-color: rgb(48, 204, 252);
 }
 /* Pesquisar */
 .pesquisar {
-    width: 80vw;
+    width: 90vw;
+    height: 100vh;
+    margin-left: 4vw;
+    background-color: rgb(80, 80, 80);
+    border-style: groove;
+    border-color: rgb(48, 204, 252);
 }
