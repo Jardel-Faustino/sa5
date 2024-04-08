@@ -1,0 +1,20 @@
+{% load static %}
+
+<div class="lista">
+    <table>
+        <tr>
+            <th class="th1"><b>Nome</b></th>
+            <th class="th1"><b>Dta de Nascimento</b></th>
+            <th class="th1"><b>E-mail</b></th>
+            <th class="th1"><b>Pais Escolhido</b></th>
+        </tr>
+        {% for usuario in usuario %}
+        <tr>
+            <th class="th2">{{usuario.nome}}</th>
+            <th class="th2">{{usuario.data_nascimento}}</th>
+            <th class="th2">{{usuario.email}}</th>
+            <th class="th2">{{usuario.pais}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
