@@ -14,7 +14,9 @@
     <div class="cadastrar">
 
         <!-- Formulário de cadastro de usuário -->
-        <form action="processar_formulario.php" method="post">
+        <form action="{% url 'cadastrar' %}" method="post">
+            {% csrf_token %} <!-- Adiciona o token CSRF -->
+
             <label for="nome">Nome:</label> <!-- Rótulo para o campo de nome -->
             <input type="text" id="nome" name="nome" required><br><br> <!-- Campo de entrada para o nome -->
 
@@ -24,13 +26,12 @@
             <label for="email">E-mail:</label> <!-- Rótulo para o campo de e-mail -->
             <input type="email" id="email" name="email" required><br><br> <!-- Campo de entrada para o e-mail -->
 
-            <label for="pais">País que deseja trabalhar:</label> <!-- Rótulo para o menu suspenso de países -->
-            <select id="pais" name="pais" required> <!-- Menu suspenso para selecionar o país -->
-                <option value="" disabled selected>Selecione o país</option> <!-- Opção padrão -->
-                <option value="Estados Unidos">Estados Unidos</option> <!-- Opção para Estados Unidos -->
-                <option value="Canadá">Canadá</option> <!-- Opção para Canadá -->
-                <option value="Reino Unido">Reino Unido</option> <!-- Opção para Reino Unido -->
-                <!-- Adicione mais opções de países conforme necessário -->
+            <label for="pais">País que deseja trabalhar:</label>
+            <select id="pais" name="pais" required>
+                <option value="" disabled selected>Selecione o país</option>
+                {% for pais in paises %}
+                    <option value="{{ pais.nome }}">{{ pais.nome }}</option>
+                {% endfor %}
             </select><br><br>
 
             <input type="submit" value="Cadastrar"><br><br> <!-- Botão para enviar o formulário -->

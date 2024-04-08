@@ -10,7 +10,19 @@
 <body>
     
     {% include "gtc_app/rotas/menu.html" %}
-    <div class="principal"></div>
+    <div class="principal">
+        <h1>Últimos Usuários Cadastrados</h1>
+        <ul>
+            {% for usuario in ultimos_usuarios %}
+                <li>
+                    <strong>Nome:</strong> {{ usuario.nome }}<br>
+                    <strong>Data de Nascimento:</strong> {{ usuario.data_nascimento }}<br>
+                    <strong>E-mail:</strong> {{ usuario.email }}<br>
+                    <strong>País:</strong> {{ usuario.pais }}<br>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 
 </body>
 </html>

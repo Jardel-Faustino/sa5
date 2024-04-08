@@ -1,5 +1,5 @@
 from django.urls import path
-from gtc_app.views import principal, menu, cadastrar, atualizar, deletar, pesquisar
+from gtc_app.views import principal, menu, cadastrar, atualizar, deletar, pesquisar, sucesso
 
 # Cadastra as Urls do nosso Sistema de Cadastro GTC.
 
@@ -10,4 +10,5 @@ urlpatterns = [
     path('atualizar/', atualizar, name='atualizar'),
     path('deletar/', deletar, name='deletar'),
     path('pesquisar/', pesquisar, name='pesquisar'),
+    path('sucesso/', sucesso, name='sucesso'),
 ]
