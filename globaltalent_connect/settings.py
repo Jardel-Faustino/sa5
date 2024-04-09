@@ -74,12 +74,22 @@ WSGI_APPLICATION = 'globaltalent_connect.wsgi.application'
 
 # Base de dados
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+from configparser import ConfigParser
+import os
+
+# Cria uma instância da classe ConfigParser
+config = ConfigParser()
+
+# Lê as configurações do arquivo 'config.ini'
+config.read('config.ini')
+
+# Define as configurações do banco de dados
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gtc',
-        'USER': 'root',
-        'PASSWORD': '0000',
+        'USER': config['DATABASE']['USER'],
+        'PASSWORD': config['DATABASE']['PASSWORD'],
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -119,7 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR, 'gtc_app/',
+    BASE_DIR / 'gtc_app' / 'static',
 ]
 
 # Tipo de campo de chave primária padrão
