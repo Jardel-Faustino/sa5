@@ -16,20 +16,6 @@ def cadastrar (request):
     
     return render(request, 'gtc_app/rotas/cadastrar.html', {'paises': paises})  # Renderiza o template 'cadastrar.html' com o formulário e passando 'paises' para o contexto do template
 
-def atualizar (request):
-    return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar'})
-
-def deletar (request):
-    return render(request, "gtc_app/rotas/deletar.html", {'pagina_ativa': 'deletar'})
-
-def pesquisar (request):
-    return render(request, "gtc_app/rotas/pesquisar.html", {'pagina_ativa': 'pesquisar'})
-
-def sucesso(request):
-    return render(request, 'sucesso.html')
-
-from .models import pais
-
 def salvos(request):
     # Captura os dados do formulário
     nome_us = request.POST.get("nome")
@@ -47,4 +33,18 @@ def salvos(request):
     novo_usuario = usuario.objects.create(nome=nome_us, data_nascimento=data_nascimento_us, email=email_us, pais=pais_instancia)
     # Recupera todos os usuários após criar o novo usuário
     return render(request, "gtc_app/global/principal.html", {"usuarios": usuarios})
+
+def atualizar (request):
+    return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar'})
+
+def deletar (request):
+    return render(request, "gtc_app/rotas/deletar.html", {'pagina_ativa': 'deletar'})
+
+def pesquisar (request):
+    return render(request, "gtc_app/rotas/pesquisar.html", {'pagina_ativa': 'pesquisar'})
+
+def sucesso(request):
+    return render(request, 'sucesso.html')
+
+
 
