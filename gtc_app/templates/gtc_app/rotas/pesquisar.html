@@ -10,30 +10,28 @@
 <body>
     
     {% include "gtc_app/rotas/menu.html" %}
+    
+    <h2>Pesquisar Pessoas Cadastradas por Nome</h2>
+    <form action="{% url 'salvos' %}" method="GET">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" placeholder="Digite o nome">
+        <button type="submit">Pesquisar</button>
+    </form>
+    
     <div class="pesquisar">
-        {% extends 'base.html' %}
-        {% block content %}
-        <h2>Pesquisar Pessoas Cadastradas por Nome</h2>
-        <form action="{% url 'pesquisar_pessoas' %}" method="GET">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" placeholder="Digite o nome">
-            <button type="submit">Pesquisar</button>
-        </form>
-
-        {% if nome_pesquisado %}
-            <h3>Resultados da Pesquisa para "{{ nome_pesquisado }}":</h3>
-            {% if pessoas %}
-                <ul>
-                {% for pessoa in pessoas %}
-                    <li>{{ pessoa.nome }}</li>
-                    <!-- Adicione aqui os outros campos da pessoa -->
-                {% endfor %}
-                </ul>
-            {% else %}
-                <p>Nenhuma pessoa encontrada com o nome "{{ nome_pesquisado }}"</p>
-            {% endif %}
+    {% if nome_pesquisado %}
+        <h3>Resultados da Pesquisa para "{{ nome_pesquisado }}":</h3>
+        {% if usuarios %}
+            <ul>
+            {% for usuario in usuarios %}
+                <li>{{ usuario.nome }}</li>
+                <!-- Adicione aqui os outros campos da pessoa -->
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhuma pessoa encontrada com o nome "{{ nome_pesquisado }}"</p>
         {% endif %}
-        {% endblock %}
+    {% endif %}
 
     </div>
 
