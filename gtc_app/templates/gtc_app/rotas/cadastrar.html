@@ -9,12 +9,9 @@
 </head>
 <body>
     
-    {% include "gtc_app/rotas/menu.html" %}
-        {% if mensagem_erro %}
-            <p>{{ mensagem_erro }}</p>
-        {% endif %}
+        {% include "gtc_app/rotas/menu.html" %}
         <!-- Formulário de cadastro de usuário -->
-        <form action="{% url 'salvos' %}" method="post">
+        <form action="{% url 'cadastrar' %}" method="post">
             {% csrf_token %} <!-- Adiciona o token CSRF -->
             <div class="cadastrar">
 
@@ -26,6 +23,10 @@
 
                 <label for="email">E-mail:</label> <!-- Rótulo para o campo de e-mail -->
                 <input type="email" id="email" name="email" required><br><br> <!-- Campo de entrada para o e-mail -->
+                
+                {% if mensagem_erro %}
+                    <p>{{ mensagem_erro }}</p>
+                {% endif %}
 
                 <label for="pais">País que deseja trabalhar:</label>
                 <select id="pais" name="pais" required>
