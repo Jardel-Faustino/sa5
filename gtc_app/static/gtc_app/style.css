@@ -47,8 +47,8 @@ html,body {
 .botoes {
     position: absolute; /* Define a posição dos botões como absoluta */
     width: 99vw; /* Largura ajustável para se adaptar ao tamanho da tela */
-    margin: 0vh 2vw; /* Centraliza horizontalmente */
-    bottom: 0.5vh; /* Define a mesma posição vertical da div 'boxb' */
+    margin: 0vh 2.5vw; /* Centraliza horizontalmente */
+    bottom: 0.6vh; /* Define a mesma posição vertical da div 'boxb' */
     left: 50vw; /* Alinha os botões horizontalmente */
     transform: translateX(-50%); /* Centraliza os botões */ 
     z-index: 2; /* Definir a .botoes como a sugunda na ordem de empilhamento dos elementos*/
@@ -56,7 +56,7 @@ html,body {
 .botao {
     color: rgb(30, 30, 30); /* Define a cor do texto dos botões */
     border-radius: 10px; /* Adiciona um raio de borda aos botões */
-    padding: 0.5% 1.5%; /* Adiciona preenchimento aos botões */
+    padding: 0.5vh 1.5vw; /* Adiciona preenchimento aos botões */
     margin-right: -2vw; /* Adiciona uma margem à direita dos botões */
     text-decoration: none; /* Remove a decoração de texto dos botões */
 }
@@ -66,10 +66,12 @@ html,body {
 .botao.ativo {
     color: rgb(30, 30, 30); /* Define a cor do texto dos botões */
     border-radius: 10px; /* Adiciona um raio de borda aos botões */
-    padding: 10px 20px; /* Adiciona preenchimento aos botões */
+    padding: 0.5vh 1.5vw; /* Adiciona preenchimento aos botões */
     margin-right: -2vw; /* Adiciona uma margem à direita dos botões */
-    font-weight: bold;
+    text-decoration: none; /* Mantém a decoração de texto removida */
+    background-color: rgb(30, 173, 216); /* Adiciona um fundo semi-transparente ao botão ativo */
 }
+
 .logo1 {
     position: absolute; /* Define a posição dos botões como absoluta */
     width: 25px; /* Define a largura do elemento .i3 como 300 pixels */
@@ -84,7 +86,8 @@ html,body {
 /* Página Principla */
 .principal {
     width: 90vw;
-    height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando necessário */
     margin-left: 4vw;
     background-color: rgb(80, 80, 80);
     border-style: groove;
@@ -120,9 +123,41 @@ html,body {
 /* Pesquisar */
 .pesquisar {
     width: 90vw;
-    height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando necessário */
     margin-left: 4vw;
     background-color: rgb(80, 80, 80);
     border-style: groove;
     border-color: rgb(48, 204, 252);
 }
+
+/* Inicialmente, ocultar as divs */
+.sucesso, .falha {
+    display: none; /* Oculta as divs de sucesso e falha */
+}
+
+/* Animar a aparência e o desaparecimento das divs */
+@keyframes fade-in {
+    from { opacity: 1; } /* Define a opacidade inicial como 0 (totalmente transparente) */
+    to { opacity: 1; } /* Define a opacidade final como 1 (totalmente opaco) */
+}
+
+@keyframes fade-out {
+    from { opacity: 1; } /* Define a opacidade inicial como 1 (totalmente opaco) */
+    to { opacity: 0; } /* Define a opacidade final como 0 (totalmente transparente) */
+}
+
+/* Definir tempo de espera antes de começar a animação de desaparecimento */
+.sucesso.show {
+    display: block; /* Mostra a div de sucesso */
+    animation: fade-in 1s ease-in-out forwards, fade-out 1s ease-in-out 3s forwards; 
+    /* Aplica a animação de fade-in com duração de 1 segundo e espera 5 segundos antes de aplicar a animação de fade-out */
+}
+
+/* Aplicar a animação à div de falha */
+.falha.show {
+    display: block; /* Mostra a div de falha */
+    animation: fade-in 1s ease-in-out forwards, fade-out 1s ease-in-out 3s forwards; 
+    /* Aplica a animação de fade-in com duração de 1 segundo e espera 5 segundos antes de aplicar a animação de fade-out */
+}
+

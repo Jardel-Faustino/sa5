@@ -8,9 +8,10 @@
     <title>Sistema GTC / Pesquisar</title>
 </head>
 <body>
-    
+
+    <a id="topo"></a>
     {% include "gtc_app/rotas/menu.html" %} <!-- Inclui o menu -->
-    <div class="pesquisar">
+    <div class="pesquisar" id="pesquisar-topo">
         <h2>Pesquisar Usuários por Nome</h2>
         <form id="search-form" action="{% url 'pesquisar' %}" method="POST">
             {% csrf_token %}
@@ -24,7 +25,10 @@
             
         
             {% if pesquisando %}
-                <h3>Resultados da Pesquisa:</h3>
+                {% if h3 %}
+                    <h3>{{ h3 }}</h3>
+                {% endif %}
+
                 {% if pesquisando.resultado %}
                     <ul>
                     {% for usuario in pesquisando.resultado %}
@@ -39,8 +43,8 @@
                 {% else %}
                     <p>Nenhum resultado encontrado.</p>
                 {% endif %}
+
             {% else %}
-                <h3>Todos os Usuários:</h3>
                 <ul>
                 {% for usuario in pesquisando %}
                     <li>
@@ -52,6 +56,7 @@
                 {% endfor %}
                 </ul>
         {% endif %}
+        <a href="#pesquisar-topo" class="topo">Voltar ao Topo</a>
 
     </div>
 </body>

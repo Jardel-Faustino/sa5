@@ -23,10 +23,12 @@
 
                 <label for="email">E-mail:</label> <!-- Rótulo para o campo de e-mail -->
                 <input type="email" id="email" name="email" required><br><br> <!-- Campo de entrada para o e-mail -->
-                
-                {% if mensagem_erro %}
-                    <p>{{ mensagem_erro }}</p>
-                {% endif %}
+
+                <div class="email_e">
+                    {% if email_erro %}
+                        <p>{{ email_erro }}</p>
+                    {% endif %}
+                </div>
 
                 <label for="pais">País que deseja trabalhar:</label>
                 <select id="pais" name="pais" required>
@@ -37,7 +39,23 @@
                 </select><br><br>
 
                 <input type="submit" value="Cadastrar"><br><br> <!-- Botão para enviar o formulário -->
+
+                <!-- Div para mensagem de sucesso -->
+                <div id="sucesso" class="sucesso {% if mensagem_sucesso %}show{% endif %}">
+                    {% if mensagem_sucesso %}
+                        <p>{{ mensagem_sucesso }}</p>
+                    {% endif %}
+                </div>
+
+                <!-- Div para mensagem de falha -->
+                <div id="falha" class="falha {% if mensagem_erro %}show{% endif %}">
+                    {% if mensagem_erro %}
+                        <p>{{ mensagem_erro }}</p>
+                    {% endif %}
+                </div>
+
             </div>
         </form> <!-- Fim do formulário -->
+        
 </body>
 </html>
