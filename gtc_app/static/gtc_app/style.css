@@ -92,14 +92,18 @@ html,body {
     background-color: rgb(80, 80, 80);
     border-style: groove;
     border-color: rgb(48, 204, 252);
+    display: table; /* Define o contêiner como uma tabela */
 }
-.principal li > strong {
-    display: inline-block;
-    width: 5vw; /* Define uma largura fixa para cada <strong> */
-    white-space: nowrap; /* Evita que o texto quebre em várias linhas */
-    overflow: hidden; /* Oculta o conteúdo que ultrapassar a largura definida */
-    text-overflow: ellipsis; /* Adiciona reticências se o texto ultrapassar a largura */
-    /*margin-right: 15px;*/
+.principal li {
+    display: table-row; /* Define cada item como uma linha da tabela */
+    border-bottom: 1px solid rgb(48, 204, 252); /* Linha de separação entre itens */
+}
+.principal li > .complemento {
+    display: table-cell; /* Define cada elemento como uma célula da tabela */
+    padding: 10px; /* Adiciona um pouco de espaçamento interno */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 /* Cadastrar */
 .cadastrar {
