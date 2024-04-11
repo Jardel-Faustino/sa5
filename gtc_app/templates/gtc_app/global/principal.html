@@ -16,10 +16,10 @@
         <ul>
             {% for usuario in usuarios %}
                 <li>
-                    <strong>Nome:</strong> {{ usuario.nome }}<br>
-                    <strong>Data de Nascimento:</strong> {{ usuario.data_nascimento }}<br>
-                    <strong>Email:</strong> {{ usuario.email }}<br>
-                    <strong>País:</strong> {{ usuario.pais }}
+                    <strong class="dados">Nome:</strong> {{ usuario.nome }}&nbsp;&nbsp;&nbsp;
+                    <strong class="dados">Data de Nascimento:</strong> {{ usuario.data_nascimento }}&nbsp;&nbsp;&nbsp;
+                    <strong class="dados">Email:</strong> {{ usuario.email }}&nbsp;&nbsp;&nbsp;
+                    <strong class="dados">País:</strong> {{ usuario.pais }}<br><br>
                 </li>
             {% endfor %}
         </ul>

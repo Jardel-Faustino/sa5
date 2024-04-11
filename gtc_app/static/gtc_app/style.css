@@ -93,6 +93,14 @@ html,body {
     border-style: groove;
     border-color: rgb(48, 204, 252);
 }
+.principal li > strong {
+    display: inline-block;
+    width: 5vw; /* Define uma largura fixa para cada <strong> */
+    white-space: nowrap; /* Evita que o texto quebre em várias linhas */
+    overflow: hidden; /* Oculta o conteúdo que ultrapassar a largura definida */
+    text-overflow: ellipsis; /* Adiciona reticências se o texto ultrapassar a largura */
+    /*margin-right: 15px;*/
+}
 /* Cadastrar */
 .cadastrar {
     width: 90vw;
