@@ -68,8 +68,7 @@ html,body {
     border-radius: 10px; /* Adiciona um raio de borda aos botões */
     padding: 10px 20px; /* Adiciona preenchimento aos botões */
     margin-right: -2vw; /* Adiciona uma margem à direita dos botões */
-    text-shadow: -3px -3px 4px rgb(30, 30, 30);
-    text-decoration: none; /* Remove a decoração de texto dos botões */
+    font-weight: bold;
 }
 .logo1 {
     position: absolute; /* Define a posição dos botões como absoluta */

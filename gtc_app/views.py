@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from .models import usuario, pais
 from django.http import HttpResponseBadRequest
 dados = []
@@ -30,47 +30,38 @@ def cadastrar(request):
             novo_usuario = usuario(nome=nome, data_nascimento=data_nascimento, email=email, pais=pais_obj)
             novo_usuario.save()
             paises = pais.objects.all() 
-            return render(request, 'gtc_app/rotas/cadastrar.html', {'pagina_ativa': 'cadastrar', 'paises': paises})
+            return render(request, 'gtc_app/rotas/cadastrar.html', {'pagina_ativa': 'cadastrar', 'paises': paises})  # Redireciona para a mesma página sem parâmetros de cadastro
 
     paises = pais.objects.all() 
     return render(request, 'gtc_app/rotas/cadastrar.html', {'pagina_ativa': 'cadastrar', 'paises': paises})
 
-'''def salvos(request):
-    if request.method == 'POST':
-        # Captura os dados do formulário
-        nome_us = request.POST.get("nome")
-        data_nascimento_us = request.POST.get("data_nascimento")
-        email_us = request.POST.get("email")
-        pais_us = request.POST.get("pais")  # Obter o nome do país
-
-        # Verifica se o e-mail já está em uso
-        
-
-        # Obter a instância do país correspondente ao nome fornecido
-        pais_instancia = pais.objects.get(nome=pais_us)
-
-        # Cria um novo objeto usuario com todos os campos preenchidos
-        novo_usuario = usuario.objects.create(nome=nome_us, data_nascimento=data_nascimento_us, email=email_us, pais=pais_instancia)
-        
-        return render(request, "gtc_app/global/principal.html", {'pagina_ativa': 'principal',"usuarios": usuarios})'''
-
 def atualizar (request):
     return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar'})
 
-def deletar (request):
-    return render(request, "gtc_app/rotas/deletar.html", {'pagina_ativa': 'deletar'})
+def deletar (request,id=0):
+    delete = usuario.objects.get(id=id)
+    delete.delete()
+    usuarios = usuario.objects.all() 
+    return render(request, "gtc_app/rotas/deletar.html", {'pagina_ativa': 'deletar', 'usuarios': usuarios})
 
-def pesquisar (request):
-    if request.POST:
-        pessoa = request.POS.get("nome_pesquisado")
-        usuario.objects.filter(nome__icontains=pessoa)
-    usuarios ={
-        "nome_pesquisadonome" : usuarios
-    }
-    return render(request, "gtc_app/rotas/pesquisar.html",  {'usuarios': usuarios, 'pagina_ativa': 'pesquisar'})
+def pesquisar(request):
+    pesquisando = {}
+    
+    nome_pesquisado = request.POST.get("nome") if request.method == 'POST' else request.GET.get("nome", "")
+    letra_selecionada = request.GET.get("letra", "").lower()  # Obtém a letra selecionada, convertendo para minúsculo
+    
+    if not nome_pesquisado and not letra_selecionada:  # Se tanto o campo de pesquisa quanto a letra selecionada estiverem vazios
+        pesquisando["resultado"] = usuario.objects.all()  # Obtém todos os usuários
+    elif letra_selecionada:  # Se uma letra foi selecionada
+        pesquisando["resultado"] = usuario.objects.filter(nome__istartswith=letra_selecionada)
+    else:  # Se um nome foi pesquisado
+        pesquisando["resultado"] = usuario.objects.filter(nome__iexact=nome_pesquisado)
+         
+    return render(request, "gtc_app/rotas/pesquisar.html", {'pagina_ativa': 'pesquisar', 'pesquisando': pesquisando})
 
 def sucesso(request):
-    return render(request, 'sucesso.html')
+    return render(request, "gtc_app/rotas/sucesso.html")
 
-
+def alfabeto(request):
+    return render(request, "gtc_app/rotas/alfabeto.html")
 

@@ -9,31 +9,50 @@
 </head>
 <body>
     
-    {% include "gtc_app/rotas/menu.html" %}
+    {% include "gtc_app/rotas/menu.html" %} <!-- Inclui o menu -->
     <div class="pesquisar">
-        <h2>Pesquisar Pessoas por Nome</h2>
-        <form action="{% url 'pesquisar' %}" method="GET">
+        <h2>Pesquisar Usuários por Nome</h2>
+        <form id="search-form" action="{% url 'pesquisar' %}" method="POST">
+            {% csrf_token %}
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" placeholder="Digite o nome">
             <button type="submit">Pesquisar</button>
-        </form>
+            <button type="button" onclick="window.location.href='{% url 'pesquisar' %}'" class="limpar">Limpar Pesquisa</button>        </form>
         
+            <!-- Alfabeto para filtrar por letra inicial -->
+            {% include "gtc_app/rotas/alfabeto.html" %}
+            
         
-        {% if nome_pesquisado %}
-            <h3>Resultados da Pesquisa para "{{ nome_pesquisado }}":</h3>
-            {% if usuarios %}
+            {% if pesquisando %}
+                <h3>Resultados da Pesquisa:</h3>
+                {% if pesquisando.resultado %}
+                    <ul>
+                    {% for usuario in pesquisando.resultado %}
+                        <li>
+                            <strong>Nome:</strong> {{ usuario.nome }}<br>
+                            <strong>Data de Nascimento:</strong> {{ usuario.data_nascimento }}<br>
+                            <strong>Email:</strong> {{ usuario.email }}<br>
+                            <strong>País:</strong> {{ usuario.pais }}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Nenhum resultado encontrado.</p>
+                {% endif %}
+            {% else %}
+                <h3>Todos os Usuários:</h3>
                 <ul>
-                {% for usuario in usuarios %}
-                    <li>{{ usuario.nome }}</li>
-                    <!-- Adicione aqui os outros campos da pessoa -->
+                {% for usuario in pesquisando %}
+                    <li>
+                        <strong>Nome:</strong> {{ usuario.nome }}<br>
+                        <strong>Data de Nascimento:</strong> {{ usuario.data_nascimento }}<br>
+                        <strong>Email:</strong> {{ usuario.email }}<br>
+                        <strong>País:</strong> {{ usuario.pais }}
+                    </li>
                 {% endfor %}
                 </ul>
-            {% else %}
-                <p>Nenhuma pessoa encontrada com o nome "{{ nome_pesquisado }}"</p>
-            {% endif %}
         {% endif %}
 
     </div>
-
 </body>
 </html>
