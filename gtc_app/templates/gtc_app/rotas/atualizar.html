@@ -10,7 +10,7 @@
 <body>
     
     {% include "gtc_app/rotas/menu.html" %}
-    <div class="atualizar">
+    <div class="atualizar" id="atualizar-topo">
         <h2>Pesquisar Usuários por Nome</h2>
         <form id="search-form" action="{% url 'atualizar' %}" method="POST">
             {% csrf_token %}
@@ -56,7 +56,7 @@
                 {% endfor %}
                 </ul>
         {% endif %}
-        <a href="#pesquisar-topo" class="topo">Voltar ao Topo</a>
+        <a href="#atualizar-topo" class="topo">Voltar ao Topo</a>
     </div>
 
 </body>

@@ -11,9 +11,6 @@ def principal (request):
     usuarios = usuario.objects.all() 
     return render(request, "gtc_app/global/principal.html", {'pagina_ativa': 'principal', 'usuarios': usuarios})
 
-from django.shortcuts import render
-from .models import usuario, pais  # Importe os modelos que você está usando para o cadastro
-
 def cadastrar(request):
 
     mensagem_sucesso = None
@@ -64,11 +61,37 @@ def atualizar (request):
          
     return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar', 'pesquisando': pesquisando, 'h3':h3})
 
-def deletar (request,id=0):
-    delete = usuario.objects.get(id=id)
-    delete.delete()
+def deletar(request):
+    pesquisando = {}
+    
+    nome_pesquisado = request.POST.get("nome") if request.method == 'POST' else request.GET.get("nome", "")
+    letra_selecionada = request.GET.get("letra", "").lower()  # Obtém a letra selecionada, convertendo para minúsculo
+
+    h3 = ""  # Inicialize a variável
+    if not nome_pesquisado and not letra_selecionada:  # Se tanto o campo de pesquisa quanto a letra selecionada estiverem vazios
+        h3 = "Lista de Usuários"
+        pesquisando["resultado"] = usuario.objects.all()  # Obtém todos os usuários
+
+    elif letra_selecionada:  # Se uma letra foi selecionada
+        h3 = f"Lista de Usuários com a Letra '{request.GET.get('letra', '').upper()}'"  # Converte para maiúsculas
+        pesquisando["resultado"] = usuario.objects.filter(nome__istartswith=letra_selecionada)
+        
+    else:  # Se um nome foi pesquisado
+        h3 = f"Resultado da Pesquisa: '{nome_pesquisado}'"
+        pesquisando["resultado"] = usuario.objects.filter(nome__iexact=nome_pesquisado)
+        
+    if request.method == 'POST':
+        id_usuario = request.POST.get("id")
+        if id_usuario:
+            try:
+                delete = usuario.objects.get(id=id_usuario)
+                delete.delete()
+            except usuario.DoesNotExist:
+                return HttpResponseBadRequest("Usuário não encontrado")
+
     usuarios = usuario.objects.all() 
-    return render(request, "gtc_app/rotas/deletar.html", {'pagina_ativa': 'deletar', 'usuarios': usuarios})
+    return render(request, "gtc_app/rotas/deletar.html", {'pagina_ativa': 'deletar', 'usuarios': usuarios, 'pesquisando': pesquisando, 'h3': h3})
+
 
 def pesquisar(request):
     pesquisando = {}
@@ -130,7 +153,7 @@ def cadastro(request):
                 try:
                     data_nascimento = datetime.strptime(data_nascimento, '%Y/%d/%m')
                 except ValueError:
-                    raise ValidationError("Data de nascimento inválida. Por favor, use o formato DD/MM/YYYY.")
+                    raise ValidationErro("Data de nascimento inválida. Por favor, use o formato DD/MM/YYYY.")
                 
                 # Atualizar as informações do usuário
                 user.nome = nome
