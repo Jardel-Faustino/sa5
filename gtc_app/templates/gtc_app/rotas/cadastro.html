@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href="{% static "gtc_app/style.css" %}">
+    <title>Sistema GTC / Cadastrar</title>
+</head>
+<body>
+    
+        {% include "gtc_app/rotas/menu.html" %}
+        <!-- Formulário de cadastro de usuário -->
+        <form action="{% url 'cadastro' %}" method="post">
+            {% csrf_token %} <!-- Adiciona o token CSRF -->
+            <div class="cadastro">
+                <h2> atualizando cadastro <h2>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" value="{{ user.nome }}" required><br><br>
+                
+                <label for="data_nascimento">Data de Nascimento:</label>
+                <input type="date" id="data_nascimento" name="data_nascimento" value="{{ data_nascimento_str }}" required><br><br>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{ user.email }}" required><br><br>
+                
+                <div class="email_e">
+                    {% if email_erro %}
+                        <p>{{ email_erro }}</p>
+                    {% endif %}
+                </div>
+
+                <label for="pais">País:</label>
+                <select id="pais" name="pais" required>
+                    {% for pais in paises %}
+                        <option value="{{ pais.nome }}" {% if pais == user.pais %}selected{% endif %}>{{ pais.nome }}</option>
+                    {% endfor %}
+                </select><br><br>
+
+                <input type="submit" value="atualizar"><br><br> <!-- Botão para enviar o formulário -->
+
+                <!-- Div para mensagem de sucesso -->
+                <div id="sucesso" class="sucesso {% if mensagem_sucesso %}show{% endif %}">
+                    {% if mensagem_sucesso %}
+                        <p>{{ mensagem_sucesso }}</p>
+                    {% endif %}
+                </div>
+
+                <!-- Div para mensagem de falha -->
+                <div id="falha" class="falha {% if mensagem_erro %}show{% endif %}">
+                    {% if mensagem_erro %}
+                        <p>{{ mensagem_erro }}</p>
+                    {% endif %}
+                </div>
+
+            </div>
+        </form> <!-- Fim do formulário -->
+        
+</body>
+</html>

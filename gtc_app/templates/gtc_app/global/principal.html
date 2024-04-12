@@ -13,16 +13,20 @@
     {% include "gtc_app/rotas/menu.html" %}
     <div class="principal">
         <h1>Últimos Usuários Cadastrados</h1>
-        <ul>
+        <table>
             {% for usuario in usuarios %}
-                <li>
-                    <strong class="dados">Nome:</strong> {{ usuario.nome }}&nbsp;&nbsp;&nbsp;
-                    <strong class="dados">Data de Nascimento:</strong> {{ usuario.data_nascimento }}&nbsp;&nbsp;&nbsp;
-                    <strong class="dados">Email:</strong> {{ usuario.email }}&nbsp;&nbsp;&nbsp;
-                    <strong class="dados">País:</strong> {{ usuario.pais }}<br><br>
-                </li>
+                <tr>
+                    <td><strong>Nome:</strong></td>
+                    <td>{{ usuario.nome }}</td>
+                    <td><strong>Data de Nascimento:</strong></td>
+                    <td>{{ usuario.data_nascimento }}</td>
+                    <td><strong>Email:</strong></td>
+                    <td>{{ usuario.email }}</td>
+                    <td><strong>País:</strong></td>
+                    <td>{{ usuario.pais }}</td>
+                </tr>
             {% endfor %}
-        </ul>
+        </table>
         <a href="#topo" class="topo">Voltar ao Topo</a>
     </div>
 

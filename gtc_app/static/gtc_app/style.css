@@ -92,18 +92,16 @@ html,body {
     background-color: rgb(80, 80, 80);
     border-style: groove;
     border-color: rgb(48, 204, 252);
-    display: table; /* Define o contêiner como uma tabela */
 }
-.principal li {
-    display: table-row; /* Define cada item como uma linha da tabela */
-    border-bottom: 1px solid rgb(48, 204, 252); /* Linha de separação entre itens */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Combina as bordas das células */
 }
-.principal li > .complemento {
-    display: table-cell; /* Define cada elemento como uma célula da tabela */
-    padding: 10px; /* Adiciona um pouco de espaçamento interno */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+td {
+    padding: 36px; /* Adiciona um pequeno padding para espaçamento entre as células */
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 /* Cadastrar */
 .cadastrar {
@@ -117,11 +115,18 @@ html,body {
 /* Atualizar */
 .atualizar {
     width: 90vw;
-    height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
     margin-left: 4vw;
     background-color: rgb(80, 80, 80);
     border-style: groove;
     border-color: rgb(48, 204, 252);
+}
+.atualizar > ul {
+    margin-left: 10px; 
+}
+.editar {
+    margin-left: -10px;
 }
 /* Deletar */
 .deletar {

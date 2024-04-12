@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import usuario, pais
 from django.http import HttpResponseBadRequest
 dados = []
@@ -44,7 +44,25 @@ def cadastrar(request):
 
 
 def atualizar (request):
-    return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar'})
+    pesquisando = {}
+
+    nome_pesquisado = request.POST.get("nome") if request.method == 'POST' else request.GET.get("nome", "")
+    letra_selecionada = request.GET.get("letra", "").lower()  # Obtém a letra selecionada, convertendo para minúsculo
+
+    h3 = ""  # Inicialize a variável
+    if not nome_pesquisado and not letra_selecionada:  # Se tanto o campo de pesquisa quanto a letra selecionada estiverem vazios
+        h3 = "Lista de Usuários"
+        pesquisando["resultado"] = usuario.objects.all()  # Obtém todos os usuários
+
+    elif letra_selecionada:  # Se uma letra foi selecionada
+        h3 = f"Lista de Usuários com a Letra '{request.GET.get('letra', "").upper()}'"# Converte para maiúsculas
+        pesquisando["resultado"] = usuario.objects.filter(nome__istartswith=letra_selecionada)
+        
+    else:  # Se um nome foi pesquisado
+        h3 = f"Resultado da Pesquisa: '{nome_pesquisado}'"
+        pesquisando["resultado"] = usuario.objects.filter(nome__iexact=nome_pesquisado)
+         
+    return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar', 'pesquisando': pesquisando, 'h3':h3})
 
 def deletar (request,id=0):
     delete = usuario.objects.get(id=id)
@@ -76,3 +94,57 @@ def pesquisar(request):
 def alfabeto(request):
     return render(request, "gtc_app/rotas/alfabeto.html")
 
+def cadastro(request):
+    user_id = request.GET.get("id")
+    
+    # Inicializar variáveis
+    user = None
+    data_nascimento_str = None
+    
+    # Se o ID do usuário foi fornecido, busque o usuário
+    if user_id:
+        user = get_object_or_404(usuario, id=user_id)
+        # Certifique-se de que o usuário tenha data de nascimento antes de tentar formatá-la
+        if user.data_nascimento:
+            data_nascimento_str = user.data_nascimento.strftime('%Y/%d/%m')
+    
+    mensagem_sucesso = None
+    mensagem_erro = None
+
+    if request.method == 'POST':
+        # Obter os dados do formulário
+        nome = request.POST.get("nome", "").capitalize()  # Garante que a primeira letra do nome seja maiúscula
+        data_nascimento = request.POST.get("data_nascimento", "")
+        email = request.POST.get("email", "")
+        nome_pais = request.POST.get("pais", "")
+
+        # Verifique se outro usuário já está usando o mesmo e-mail (exceto o próprio usuário atual)
+        if usuario.objects.filter(email=email).exclude(id=user_id).exists():
+            mensagem_erro = "Este 'E-MAIL' já está em uso por outro usuário. Por favor, escolha outro e-mail."
+        else:
+            try:
+                # Tentar obter o país com base no nome
+                pais_obj = pais.objects.get(nome=nome_pais)
+
+                # Converter `data_nascimento` para objeto datetime
+                try:
+                    data_nascimento = datetime.strptime(data_nascimento, '%Y/%d/%m')
+                except ValueError:
+                    raise ValidationError("Data de nascimento inválida. Por favor, use o formato DD/MM/YYYY.")
+                
+                # Atualizar as informações do usuário
+                user.nome = nome
+                user.data_nascimento = data_nascimento
+                user.email = email
+                user.pais = pais_obj
+                user.save()
+
+                mensagem_sucesso = "Dados atualizados com sucesso!"
+            except Exception as e:
+                mensagem_erro = f"Falha na atualização: {str(e)}"
+
+    # Obtenha a lista de países para usar no template
+    paises = pais.objects.all()
+
+    # Renderize a página com os dados do usuário e outros dados necessários
+    return render(request, 'gtc_app/rotas/cadastro.html', {'pagina_ativa': 'atualizar', 'user': user, 'paises': paises, 'mensagem_erro': mensagem_erro, 'mensagem_sucesso': mensagem_sucesso, 'data_nascimento_str': data_nascimento_str})
