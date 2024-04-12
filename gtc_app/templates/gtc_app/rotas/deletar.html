@@ -42,7 +42,6 @@
                                 <input type="hidden" name="id" value="{{ usuario.id }}">
                                 <button type="submit">Excluir</button>
                             </form>
-                            
                         </li>
                         {% endfor %}
                     </ul>
@@ -58,6 +57,12 @@
                         <strong>Data de Nascimento:</strong> {{ usuario.data_nascimento }}<br>
                         <strong>Email:</strong> {{ usuario.email }}<br>
                         <strong>País:</strong> {{ usuario.pais }}
+                        <form id="delete-form" action="{% url 'deletar' %}" method="POST">
+                            {% csrf_token %}
+                            <!-- Outros campos do formulário... -->
+                            <input type="hidden" name="id" value="{{ usuario.id }}">
+                            <button type="submit">Excluir</button>
+                        </form>
                     </li>
                 {% endfor %}
                 </ul>

@@ -131,7 +131,8 @@ td {
 /* Deletar */
 .deletar {
     width: 90vw;
-    height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
     margin-left: 4vw;
     background-color: rgb(80, 80, 80);
     border-style: groove;
