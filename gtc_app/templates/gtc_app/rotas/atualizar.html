@@ -33,7 +33,7 @@
                     {% for usuario in pesquisando.resultado %}
                         <li>
                             <strong>Nome:</strong> {{ usuario.nome }}<br>
-                            <strong>Data de Nascimento:</strong> {{ usuario.data_nascimento }}<br>
+                            <strong>Data de Nascimento:</strong> {{ data_formatada }}<br>
                             <strong>Email:</strong> {{ usuario.email }}<br>
                             <strong>País:</strong> {{ usuario.pais }}<br>
                         </li>
@@ -49,7 +49,7 @@
                 {% for usuario in pesquisando %}
                     <li>
                         <strong>Nome:</strong> {{ usuario.nome }}<br>
-                        <strong>Data de Nascimento:</strong> {{ usuario.data_nascimento }}<br>
+                        <strong>Data de Nascimento:</strong> {{ data_formatada }}<br>
                         <strong>Email:</strong> {{ usuario.email }}<br>
                         <strong>País:</strong> {{ usuario.pais }}
                     </li>

@@ -11,19 +11,21 @@
 
     <a id="topo"></a>
     {% include "gtc_app/rotas/menu.html" %}
-    <div class="principal">
+    <div id="topo-principal" class="principal">
         <h1>Últimos Usuários Cadastrados</h1>
         <table>
             {% for usuario in usuarios %}
                 <tr>
-                    <td><strong>Nome:</strong></td>
-                    <td>{{ usuario.nome }}</td>
-                    <td><strong>Data de Nascimento:</strong></td>
-                    <td>{{ usuario.data_nascimento }}</td>
-                    <td><strong>Email:</strong></td>
-                    <td>{{ usuario.email }}</td>
-                    <td><strong>País:</strong></td>
-                    <td>{{ usuario.pais }}</td>
+                    <td>Nome: {{ usuario.nome }}</td>
+                </tr>
+                <tr>
+                    <td>Data de Nascimento: {{ data_formatada }}</td>
+                </tr>
+                <tr>
+                    <td>Email: {{ usuario.email }}</td>
+                </tr>
+                <tr>
+                    <td>País: {{ usuario.pais }}</td>
                 </tr>
             {% endfor %}
         </table>

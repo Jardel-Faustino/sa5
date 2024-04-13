@@ -93,16 +93,6 @@ html,body {
     border-style: groove;
     border-color: rgb(48, 204, 252);
 }
-table {
-    width: 100%;
-    border-collapse: collapse; /* Combina as bordas das células */
-}
-
-td {
-    padding: 36px; /* Adiciona um pequeno padding para espaçamento entre as células */
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-}
 /* Cadastrar */
 .cadastrar {
     width: 90vw;

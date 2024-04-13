@@ -1,15 +1,46 @@
 from django.shortcuts import render, get_object_or_404
 from .models import usuario, pais
 from django.http import HttpResponseBadRequest
-dados = []
+from datetime import datetime
 
 # Criar as Visualizações das Rotas do nosso Sistema de Cadastro GTC.
 def menu (request):
     return render(request, "gtc_app/rotas/menu.html")
 
 def principal (request):
-    usuarios = usuario.objects.all() 
-    return render(request, "gtc_app/global/principal.html", {'pagina_ativa': 'principal', 'usuarios': usuarios})
+    global data_formatada
+
+    # Obtendo os usuários ordenados por ID
+    usuarios = usuario.objects.all().order_by('-id')[:10]
+    
+    # Mapeamento dos meses em português
+    meses = {
+        1: "janeiro",
+        2: "fevereiro",
+        3: "março",
+        4: "abril",
+        5: "maio",
+        6: "junho",
+        7: "julho",
+        8: "agosto",
+        9: "setembro",
+        10: "outubro",
+        11: "novembro",
+        12: "dezembro"
+    }
+
+    # Formatando a data de criação de cada usuário
+    for user in usuarios:
+        data_formatada = "{}/{}/{}".format(
+            user.data_nascimento.day,
+            meses[user.data_nascimento.month],
+            user.data_nascimento.year
+        )
+
+    # Armazenar data_formatada na sessão do usuário
+    request.session['data_formatada'] = data_formatada
+
+    return render(request, "gtc_app/global/principal.html", {'pagina_ativa': 'principal', 'usuarios': usuarios, "data_formatada":data_formatada})
 
 def cadastrar(request):
 
@@ -42,6 +73,8 @@ def cadastrar(request):
 
 def atualizar (request):
     pesquisando = {}
+    # Obter data_formatada da sessão do usuário
+    data_formatada = request.session.get('data_formatada', None)
 
     nome_pesquisado = request.POST.get("nome") if request.method == 'POST' else request.GET.get("nome", "")
     letra_selecionada = request.GET.get("letra", "").lower()  # Obtém a letra selecionada, convertendo para minúsculo
@@ -59,10 +92,11 @@ def atualizar (request):
         h3 = f"Resultado da Pesquisa: '{nome_pesquisado}'"
         pesquisando["resultado"] = usuario.objects.filter(nome__iexact=nome_pesquisado)
          
-    return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar', 'pesquisando': pesquisando, 'h3':h3})
+    return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar', 'pesquisando': pesquisando, 'h3':h3, "data_formatada":data_formatada})
 
 def deletar(request):
     pesquisando = {}
+    data_formatada = request.session.get('data_formatada', None)
     
     nome_pesquisado = request.POST.get("nome") if request.method == 'POST' else request.GET.get("nome", "")
     letra_selecionada = request.GET.get("letra", "").lower()  # Obtém a letra selecionada, convertendo para minúsculo
@@ -90,11 +124,12 @@ def deletar(request):
                 return HttpResponseBadRequest("Usuário não encontrado")
 
     usuarios = usuario.objects.all() 
-    return render(request, "gtc_app/rotas/deletar.html", {'pagina_ativa': 'deletar', 'usuarios': usuarios, 'pesquisando': pesquisando, 'h3': h3})
+    return render(request, "gtc_app/rotas/deletar.html", {'pagina_ativa': 'deletar', 'usuarios': usuarios, 'pesquisando': pesquisando, 'h3': h3, "data_formatada":data_formatada})
 
 
 def pesquisar(request):
     pesquisando = {}
+    data_formatada = request.session.get('data_formatada', None)
     
     nome_pesquisado = request.POST.get("nome") if request.method == 'POST' else request.GET.get("nome", "")
     letra_selecionada = request.GET.get("letra", "").lower()  # Obtém a letra selecionada, convertendo para minúsculo
@@ -112,7 +147,7 @@ def pesquisar(request):
         h3 = f"Resultado da Pesquisa: '{nome_pesquisado}'"
         pesquisando["resultado"] = usuario.objects.filter(nome__iexact=nome_pesquisado)
          
-    return render(request, "gtc_app/rotas/pesquisar.html", {'pagina_ativa': 'pesquisar', 'pesquisando': pesquisando, 'h3':h3})
+    return render(request, "gtc_app/rotas/pesquisar.html", {'pagina_ativa': 'pesquisar', 'pesquisando': pesquisando, 'h3':h3, "data_formatada":data_formatada})
 
 def alfabeto(request):
     return render(request, "gtc_app/rotas/alfabeto.html")
