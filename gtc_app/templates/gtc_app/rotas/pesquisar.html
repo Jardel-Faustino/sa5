@@ -9,9 +9,10 @@
 </head>
 <body>
 
-    <a id="topo"></a>
+    
     {% include "gtc_app/rotas/menu.html" %} <!-- Inclui o menu -->
-    <div class="pesquisar" id="pesquisar-topo">
+    <div class="pesquisar">
+        <a id="topo"></a>
         <h2>Pesquisar Usuários por Nome</h2>
         <form id="search-form" action="{% url 'pesquisar' %}" method="POST">
             {% csrf_token %}
@@ -23,41 +24,49 @@
             <!-- Alfabeto para filtrar por letra inicial -->
             {% include "gtc_app/rotas/alfabeto.html" %}
             
-        
             {% if pesquisando %}
                 {% if h3 %}
                     <h3>{{ h3 }}</h3>
                 {% endif %}
-
                 {% if pesquisando.resultado %}
-                    <ul>
                     {% for usuario in pesquisando.resultado %}
-                        <li>
-                            <strong>Nome:</strong> {{ usuario.nome }}<br>
-                            <strong>Data de Nascimento:</strong> {{ data_formatada }}<br>
-                            <strong>Email:</strong> {{ usuario.email }}<br>
-                            <strong>País:</strong> {{ usuario.pais }}<br><br>
-                        </li>
+                        <table>
+                            <tr>
+                                <td class="nome"><strong>Nome</strong></td>
+                                <td class="data"><strong>Data de Nascimento</strong></td>
+                                <td class="email"><strong>Email</strong></td>
+                                <td class="pais"><strong>País</strong></td>      
+                            </tr>
+                            <tr>
+                                <td class="nome">{{ usuario.nome }}</td>
+                                <td class="data">{{ data_formatada }}</td>
+                                <td class="email">{{ usuario.email }}</td>
+                                <td class="pais">{{ usuario.pais }}</td>
+                            </tr>
+                        </table><br>
                     {% endfor %}
-                    </ul>
                 {% else %}
                     <p>Nenhum resultado encontrado.</p>
                 {% endif %}
-
             {% else %}
-                <ul>
                 {% for usuario in pesquisando %}
-                    <li>
-                        <strong>Nome:</strong> {{ usuario.nome }}<br>
-                        <strong>Data de Nascimento:</strong> {{ data_formatada }}<br>
-                        <strong>Email:</strong> {{ usuario.email }}<br>
-                        <strong>País:</strong> {{ usuario.pais }}
-                    </li>
+                    <table>
+                        <tr>
+                            <td class="nome"><strong>Nome</strong></td>
+                            <td class="data"><strong>Data de Nascimento</strong></td>
+                            <td class="email"><strong>Email</strong></td>
+                            <td class="pais"><strong>País</strong></td>      
+                        </tr>
+                        <tr>
+                            <td class="nome">{{ usuario.nome }}</td>
+                            <td class="data">{{ data_formatada }}</td>
+                            <td class="email">{{ usuario.email }}</td>
+                            <td class="pais">{{ usuario.pais }}</td>
+                        </tr>
+                    </table><br>
                 {% endfor %}
-                </ul>
         {% endif %}
-        <a href="#pesquisar-topo" class="topo">Voltar ao Topo</a>
-
+        <a href="#topo" class="topo"><b>Volta ao Topo</b></a>
     </div>
 </body>
 </html>

@@ -10,7 +10,8 @@
 <body>
     
     {% include "gtc_app/rotas/menu.html" %}
-    <div class="atualizar" id="atualizar-topo">
+    <div class="atualizar">
+        <a id="topo"></a>
         <h2>Pesquisar Usuários por Nome</h2>
         <form id="search-form" action="{% url 'atualizar' %}" method="POST">
             {% csrf_token %}
@@ -29,35 +30,45 @@
                 {% endif %}
 
                 {% if pesquisando.resultado %}
-                    <ul>
                     {% for usuario in pesquisando.resultado %}
-                        <li>
-                            <strong>Nome:</strong> {{ usuario.nome }}<br>
-                            <strong>Data de Nascimento:</strong> {{ data_formatada }}<br>
-                            <strong>Email:</strong> {{ usuario.email }}<br>
-                            <strong>País:</strong> {{ usuario.pais }}<br>
-                        </li>
-                        <button class= "editar" onclick="window.location.href='/cadastro?id={{ usuario.id }}'">Atualizar</button>
-                        {% endfor %}
-                    </ul>
+                        <table>
+                            <tr>
+                                <td class="nome"><strong>Nome</strong></td>
+                                <td class="data"><strong>Data de Nascimento</strong></td>
+                                <td class="email"><strong>Email</strong></td>
+                                <td class="pais"><strong>País</strong></td>      
+                            </tr>
+                            <tr>
+                                <td class="nome">{{ usuario.nome }}</td>
+                                <td class="data">{{ data_formatada }}</td>
+                                <td class="email">{{ usuario.email }}</td>
+                                <td class="pais">{{ usuario.pais }}</td>
+                            </tr>
+                        </table>
+                        <button class= "editar" onclick="window.location.href='/cadastro?id={{ usuario.id }}'">Atualizar</button><br><br>
+                    {% endfor %}
                 {% else %}
                     <p>Nenhum resultado encontrado.</p>
                 {% endif %}
-
             {% else %}
-                <ul>
                 {% for usuario in pesquisando %}
-                    <li>
-                        <strong>Nome:</strong> {{ usuario.nome }}<br>
-                        <strong>Data de Nascimento:</strong> {{ data_formatada }}<br>
-                        <strong>Email:</strong> {{ usuario.email }}<br>
-                        <strong>País:</strong> {{ usuario.pais }}
-                    </li>
+                    <table>
+                        <tr>
+                            <td class="nome"><strong>Nome</strong></td>
+                            <td class="data"><strong>Data de Nascimento</strong></td>
+                            <td class="email"><strong>Email</strong></td>
+                            <td class="pais"><strong>País</strong></td>      
+                        </tr>
+                        <tr>
+                            <td class="nome">{{ usuario.nome }}</td>
+                            <td class="data">{{ data_formatada }}</td>
+                            <td class="email">{{ usuario.email }}</td>
+                            <td class="pais">{{ usuario.pais }}</td>
+                        </tr>
+                    </table><br>
                 {% endfor %}
-                </ul>
         {% endif %}
-        <a href="#atualizar-topo" class="topo">Voltar ao Topo</a>
+        <a href="#topo" class="topo"><b>Volta ao Topo</b></a>
     </div>
-
 </body>
 </html>

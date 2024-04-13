@@ -10,7 +10,8 @@
 <body>
     
     {% include "gtc_app/rotas/menu.html" %}
-    <div class="deletar" id="deletar-topo">
+    <div class="deletar">
+        <a id="topo"></a>
         <h2>Pesquisar Usuários por Nome</h2>
         <form id="search-form" action="{% url 'deletar' %}" method="POST">
             {% csrf_token %}
@@ -29,22 +30,28 @@
                 {% endif %}
 
                 {% if pesquisando.resultado %}
-                    <ul>
                     {% for usuario in pesquisando.resultado %}
-                        <li>
-                            <strong>Nome:</strong> {{ usuario.nome }}<br>
-                            <strong>Data de Nascimento:</strong> {{ data_formatada }}<br>
-                            <strong>Email:</strong> {{ usuario.email }}<br>
-                            <strong>País:</strong> {{ usuario.pais }}<br>
-                            <form id="delete-form" action="{% url 'deletar' %}" method="POST">
-                                {% csrf_token %}
-                                <!-- Outros campos do formulário... -->
-                                <input type="hidden" name="id" value="{{ usuario.id }}">
-                                <button type="submit">Excluir</button>
-                            </form>
-                        </li>
-                        {% endfor %}
-                    </ul>
+                        <table>
+                            <tr>
+                                <td class="nome"><strong>Nome</strong></td>
+                                <td class="data"><strong>Data de Nascimento</strong></td>
+                                <td class="email"><strong>Email</strong></td>
+                                <td class="pais"><strong>País</strong></td>      
+                            </tr>
+                            <tr>
+                                <td class="nome">{{ usuario.nome }}</td>
+                                <td class="data">{{ data_formatada }}</td>
+                                <td class="email">{{ usuario.email }}</td>
+                                <td class="pais">{{ usuario.pais }}</td>
+                            </tr>
+                        </table>
+                        <form id="delete-form" action="{% url 'deletar' %}" method="POST">
+                            {% csrf_token %}
+                            <!-- Outros campos do formulário... -->
+                            <input type="hidden" name="id" value="{{ usuario.id }}">
+                            <button type="submit">Excluir</button>
+                        </form><br>
+                    {% endfor %}
                 {% else %}
                     <p>Nenhum resultado encontrado.</p>
                 {% endif %}
@@ -52,22 +59,29 @@
             {% else %}
                 <ul>
                 {% for usuario in pesquisando %}
-                    <li>
-                        <strong>Nome:</strong> {{ usuario.nome }}<br>
-                        <strong>Data de Nascimento:</strong> {{ data_formatada }}<br>
-                        <strong>Email:</strong> {{ usuario.email }}<br>
-                        <strong>País:</strong> {{ usuario.pais }}
+                    <table>
+                        <tr>
+                            <td class="nome"><strong>Nome</strong></td>
+                            <td class="data"><strong>Data de Nascimento</strong></td>
+                            <td class="email"><strong>Email</strong></td>
+                            <td class="pais"><strong>País</strong></td>      
+                        </tr>
+                        <tr>
+                            <td class="nome">{{ usuario.nome }}</td>
+                            <td class="data">{{ data_formatada }}</td>
+                            <td class="email">{{ usuario.email }}</td>
+                            <td class="pais">{{ usuario.pais }}</td>
+                        </tr>
                         <form id="delete-form" action="{% url 'deletar' %}" method="POST">
                             {% csrf_token %}
                             <!-- Outros campos do formulário... -->
                             <input type="hidden" name="id" value="{{ usuario.id }}">
                             <button type="submit">Excluir</button>
                         </form>
-                    </li>
+                    </table><br>
                 {% endfor %}
-                </ul>
         {% endif %}
-        <a href="#deletar-topo" class="topo">Voltar ao Topo</a>
+        <a href="#topo" class="topo"><b>Volta ao Topo</b></a>
     </div>
 </body>
 </html>

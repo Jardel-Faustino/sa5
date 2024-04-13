@@ -86,13 +86,73 @@ html,body {
 /* Página Principla */
 .principal {
     width: 90vw;
-    max-height: 100vh;
-    overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando necessário */
+    height: 220vh;
+    margin-top: 1vh;
     margin-left: 4vw;
+    margin-bottom: 2vh;
     background-color: rgb(80, 80, 80);
     border-style: groove;
     border-color: rgb(48, 204, 252);
 }
+h1 {
+    width: 70vw;
+    margin-left: 9.5vw;
+    text-align: center;
+    color: rgb(30, 30, 30);
+    background-color: rgb(30, 173, 216); 
+    border: 2px ridge rgb(48, 204, 252);
+    text-decoration: none;
+}
+table {
+    width: 70vw;
+    margin-left: 9.5vw;
+    border: 2px ridge rgb(48, 204, 252);
+    border-collapse: collapse;
+}
+
+td {
+    max-height: 5vh;
+    background-color: rgb(60, 60, 60);
+    border : 2px ridge rgb(48, 204, 252);
+    text-align: center;
+}
+
+/* Estilo para a célula 'Nome' */
+.nome {
+    max-width: 40%;
+    height: 8vh;
+}
+
+/* Estilo para a célula 'Data de Nascimento' */
+.data {
+    max-width: 20%;
+    height: 8vh;
+}
+
+/* Estilo para a célula 'Email' */
+.email {
+    max-width: 30%;
+    height: 8vh;
+}
+
+/* Estilo para a célula 'País' */
+.pais {
+    max-width: 10%;
+    height: 8vh;
+}
+/* Estilo para a link 'Volta ao topo' */
+.topo {
+    max-width: 6vw;
+    height: 8vh;
+    margin-left: 40vw;
+    padding: 0.5vh 1vw;
+    color: rgb(30, 30, 30);
+    background-color: rgb(30, 173, 216);
+    border: 2px ridge rgb(48, 204, 252);
+    text-align: center;
+    text-decoration: none;
+}
+
 /* Cadastrar */
 .cadastrar {
     width: 90vw;
@@ -105,9 +165,12 @@ html,body {
 /* Atualizar */
 .atualizar {
     width: 90vw;
-    max-height: 100vh;
+    max-height: 220vh;
     overflow-y: auto;
+    margin-top: 1vh;
     margin-left: 4vw;
+    margin-bottom: 2vh;
+    padding-bottom: 8vh;
     background-color: rgb(80, 80, 80);
     border-style: groove;
     border-color: rgb(48, 204, 252);
@@ -121,9 +184,12 @@ html,body {
 /* Deletar */
 .deletar {
     width: 90vw;
-    max-height: 100vh;
+    max-height: 220vh;
     overflow-y: auto;
+    margin-top: 1vh;
     margin-left: 4vw;
+    margin-bottom: 2vh;
+    padding-bottom: 8vh;
     background-color: rgb(80, 80, 80);
     border-style: groove;
     border-color: rgb(48, 204, 252);
@@ -131,9 +197,12 @@ html,body {
 /* Pesquisar */
 .pesquisar {
     width: 90vw;
-    max-height: 100vh;
+    max-height: 220vh;
     overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando necessário */
+    margin-top: 1vh;
     margin-left: 4vw;
+    margin-bottom: 2vh;
+    padding-bottom: 8vh;
     background-color: rgb(80, 80, 80);
     border-style: groove;
     border-color: rgb(48, 204, 252);
