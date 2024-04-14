@@ -14,15 +14,16 @@
         <form action="{% url 'cadastrar' %}" method="post">
             {% csrf_token %} <!-- Adiciona o token CSRF -->
             <div class="cadastrar">
+                <h1><b>Cadastar novo Usuário</h1></h1><br><br>
+                <!-- CAEP Cadastrar, Atualizar, Deletar e Pesquisar-->
+                <label for="nome" class="nb">Nome:</label> <!-- Rótulo para o campo de nome -->
+                <input type="text" id="nome" class="caep" name="nome" required><br><br> <!-- Campo de entrada para o nome -->
 
-                <label for="nome">Nome:</label> <!-- Rótulo para o campo de nome -->
-                <input type="text" id="nome" name="nome" required><br><br> <!-- Campo de entrada para o nome -->
+                <label for="data_nascimento" class="nb">Data de Nascimento:</label> <!-- Rótulo para o campo de data de nascimento -->
+                <input type="date" id="data_nascimento" class="caep" name="data_nascimento" required><br><br> <!-- Campo de entrada para a data de nascimento -->
 
-                <label for="data_nascimento">Data de Nascimento:</label> <!-- Rótulo para o campo de data de nascimento -->
-                <input type="date" id="data_nascimento" name="data_nascimento" required><br><br> <!-- Campo de entrada para a data de nascimento -->
-
-                <label for="email">E-mail:</label> <!-- Rótulo para o campo de e-mail -->
-                <input type="email" id="email" name="email" required><br><br> <!-- Campo de entrada para o e-mail -->
+                <label for="email" class="nb">E-mail:</label> <!-- Rótulo para o campo de e-mail -->
+                <input type="email" id="email" class="caep" name="email" required><br><br> <!-- Campo de entrada para o e-mail -->
 
                 <div class="email_e">
                     {% if email_erro %}
@@ -30,15 +31,15 @@
                     {% endif %}
                 </div>
 
-                <label for="pais">País que deseja trabalhar:</label>
-                <select id="pais" name="pais" required>
+                <label for="pais" class="nb">País que deseja trabalhar:</label>
+                <select id="pais" class="caep" name="pais" required>
                     <option value="" disabled selected>Selecione o país</option>
                     {% for pais in paises %}
                         <option value="{{ pais.nome }}">{{ pais.nome }}</option>
                     {% endfor %}
                 </select><br><br>
 
-                <input type="submit" value="Cadastrar"><br><br> <!-- Botão para enviar o formulário -->
+                <input type="submit" class="caep" value="Cadastrar"><br><br> <!-- Botão para enviar o formulário -->
 
                 <!-- Div para mensagem de sucesso -->
                 <div id="sucesso" class="sucesso {% if mensagem_sucesso %}show{% endif %}">

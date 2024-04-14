@@ -13,14 +13,13 @@
     {% include "gtc_app/rotas/menu.html" %} <!-- Inclui o menu -->
     <div class="pesquisar">
         <a id="topo"></a>
-        <h2>Pesquisar Usuários por Nome</h2>
+        <h1><b>Pesquisar Usuários Cadastrados</b></h1>
         <form id="search-form" action="{% url 'pesquisar' %}" method="POST">
             {% csrf_token %}
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" placeholder="Digite o nome">
-            <button type="submit">Pesquisar</button>
-            <button type="button" onclick="window.location.href='{% url 'pesquisar' %}'" class="limpar">Limpar Pesquisa</button>        </form>
-        
+            <input type="text" id="nome" class="caep" name="nome" placeholder="Digite o nome da pesquisa">
+            <button type="submit" class="caep">Pesquisar</button>
+            <button type="button" class="caep" onclick="window.location.href='{% url 'pesquisar' %}'" class="limpar">Limpar Pesquisa</button>        </form>
+            <h3>Filtrar Usuários</h3>
             <!-- Alfabeto para filtrar por letra inicial -->
             {% include "gtc_app/rotas/alfabeto.html" %}
             

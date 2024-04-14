@@ -12,14 +12,13 @@
     {% include "gtc_app/rotas/menu.html" %}
     <div class="deletar">
         <a id="topo"></a>
-        <h2>Pesquisar Usuários por Nome</h2>
+        <h1><b>Deletar Usuários</b></h1>
         <form id="search-form" action="{% url 'deletar' %}" method="POST">
             {% csrf_token %}
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" placeholder="Digite o nome">
-            <button type="submit">Pesquisar</button>
-            <button type="button" onclick="window.location.href='{% url 'deletar' %}'" class="limpar">Limpar Pesquisa</button>        </form>
-        
+            <input type="text" id="nome" class="caep" name="nome" placeholder="Digite o nome da pesquisa">
+            <button type="submit" class="caep">Pesquisar</button>
+            <button type="button" class="caep" onclick="window.location.href='{% url 'deletar' %}'" class="limpar">Limpar Pesquisa</button>        </form>
+            <h3>Filtrar Usuários</h3>
             <!-- Alfabeto para filtrar por letra inicial -->
             {% include "gtc_app/rotas/alfabeto.html" %}
             
@@ -48,8 +47,8 @@
                         <form id="delete-form" action="{% url 'deletar' %}" method="POST">
                             {% csrf_token %}
                             <!-- Outros campos do formulário... -->
-                            <input type="hidden" name="id" value="{{ usuario.id }}">
-                            <button type="submit">Excluir</button>
+                            <input type="hidden" class="caep" name="id" value="{{ usuario.id }}">
+                            <button type="submit " class="caep">Excluir</button>
                         </form><br>
                     {% endfor %}
                 {% else %}
@@ -75,8 +74,8 @@
                         <form id="delete-form" action="{% url 'deletar' %}" method="POST">
                             {% csrf_token %}
                             <!-- Outros campos do formulário... -->
-                            <input type="hidden" name="id" value="{{ usuario.id }}">
-                            <button type="submit">Excluir</button>
+                            <input type="hidden" class="caep" name="id" value="{{ usuario.id }}">
+                            <button type="submit" class="caep">Excluir</button>
                         </form>
                     </table><br>
                 {% endfor %}

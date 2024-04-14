@@ -12,14 +12,14 @@
     {% include "gtc_app/rotas/menu.html" %}
     <div class="atualizar">
         <a id="topo"></a>
-        <h2>Pesquisar Usuários por Nome</h2>
+        <h1><b>Atualizar dados dos Usuários</b></h1>
         <form id="search-form" action="{% url 'atualizar' %}" method="POST">
             {% csrf_token %}
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" placeholder="Digite o nome">
-            <button type="submit">Pesquisar</button>
-            <button type="button" onclick="window.location.href='{% url 'atualizar' %}'" class="limpar">Limpar Pesquisa</button>        </form>
-        
+            <!-- CAEp Cadastrar, Atualizar, Deletar e Pesquisar-->
+            <input type="text" id="nome" name="nome" placeholder="Digite o nome da pesquisa" class="caep">
+            <button type="submit" class="caep">Pesquisar</button>
+            <button type="button" onclick="window.location.href='{% url 'atualizar' %}'" class="caep">Limpar Pesquisa</button>        </form>
+            <h3>Filtrar Usuários</h3>
             <!-- Alfabeto para filtrar por letra inicial -->
             {% include "gtc_app/rotas/alfabeto.html" %}
             
@@ -45,7 +45,8 @@
                                 <td class="pais">{{ usuario.pais }}</td>
                             </tr>
                         </table>
-                        <button class= "editar" onclick="window.location.href='/cadastro?id={{ usuario.id }}'">Atualizar</button><br><br>
+                        <!-- CAEp Cadastrar, Atualizar, Deletar e Pesquisar-->
+                        <button class= "caep" onclick="atua={{ usuario.id }}'">Atualizar</button><br><br>                   
                     {% endfor %}
                 {% else %}
                     <p>Nenhum resultado encontrado.</p>

@@ -82,6 +82,23 @@ html,body {
     top: 50%; /* Ajusta a posição vertical da logo1 */
     transform: translateY(-50%); /* Centraliza verticalmente a logo1 */
     z-index: 3; /* Definir a .logo1 como a terceira na ordem de empilhamento dos elementos*/
+}h1 {
+    width: 70vw;
+    margin-left: 9.5vw;
+    text-align: center;
+    color: rgb(30, 30, 30);
+    background-color: rgb(30, 173, 216); 
+    border: 2px ridge rgb(48, 204, 252);
+    text-decoration: none;
+}
+h3 {
+    width: 70vw;
+    margin-left: 9.5vw;
+    text-align: center;
+    color: rgb(30, 30, 30);
+    background-color: rgb(30, 173, 216); 
+    border: 2px ridge rgb(48, 204, 252);
+    text-decoration: none;
 }
 /* Página Principla */
 .principal {
@@ -94,15 +111,7 @@ html,body {
     border-style: groove;
     border-color: rgb(48, 204, 252);
 }
-h1 {
-    width: 70vw;
-    margin-left: 9.5vw;
-    text-align: center;
-    color: rgb(30, 30, 30);
-    background-color: rgb(30, 173, 216); 
-    border: 2px ridge rgb(48, 204, 252);
-    text-decoration: none;
-}
+
 table {
     width: 70vw;
     margin-left: 9.5vw;
@@ -151,6 +160,20 @@ td {
     border: 2px ridge rgb(48, 204, 252);
     text-align: center;
     text-decoration: none;
+}
+.nb{
+    width: 20vw;
+    margin-left: 9.5vw;
+    padding: 0.5vh 1vw;
+    color: rgb(30, 30, 30);
+    background-color: rgb(30, 173, 216);
+    border: 2px ridge rgb(48, 204, 252);
+    text-align: center;
+    text-decoration: none;
+}
+.caep{
+    width: 70vw;
+    margin-left: 9.5vw;
 }
 
 /* Cadastrar */
@@ -206,6 +229,11 @@ td {
     background-color: rgb(80, 80, 80);
     border-style: groove;
     border-color: rgb(48, 204, 252);
+}
+/* Alfabeto */
+.alfabeto{
+    width: 70vw;
+    margin-left: 9.5vw;
 }
 
 /* Inicialmente, ocultar as divs */
