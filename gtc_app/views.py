@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import usuario, pais
 from django.http import HttpResponseBadRequest
+from django.urls import reverse
 from datetime import datetime
 
 # Criar as Visualizações das Rotas do nosso Sistema de Cadastro GTC.
@@ -70,29 +71,53 @@ def cadastrar(request):
     paises = pais.objects.all() 
     return render(request, 'gtc_app/rotas/cadastrar.html', {'pagina_ativa': 'cadastrar', 'paises': paises, 'mensagem_erro': mensagem_erro, "email_erro":email_erro, "mensagem_sucesso":mensagem_sucesso})
 
-
-def atualizar (request):
+def atualizar(request):
     pesquisando = {}
-    # Obter data_formatada da sessão do usuário
     data_formatada = request.session.get('data_formatada', None)
 
-    nome_pesquisado = request.POST.get("nome") if request.method == 'POST' else request.GET.get("nome", "")
-    letra_selecionada = request.GET.get("letra", "").lower()  # Obtém a letra selecionada, convertendo para minúsculo
+    nome_pesquisado = request.POST.get("nome_pes") if request.method == 'POST' else request.GET.get("nome", "")
+    letra_selecionada = request.GET.get("letra", "").lower()
 
-    h3 = ""  # Inicialize a variável
-    if not nome_pesquisado and not letra_selecionada:  # Se tanto o campo de pesquisa quanto a letra selecionada estiverem vazios
+    h3 = ""
+    if not nome_pesquisado and not letra_selecionada:
         h3 = "Lista de Usuários"
-        pesquisando["resultado"] = usuario.objects.all()  # Obtém todos os usuários
+        pesquisando["resultado"] = usuario.objects.all()
 
-    elif letra_selecionada:  # Se uma letra foi selecionada
-        h3 = f"Lista de Usuários com a Letra '{request.GET.get('letra', "").upper()}'"# Converte para maiúsculas
+    elif letra_selecionada:
+        h3 = f"Lista de Usuários com a Letra '{letra_selecionada.upper()}'"
         pesquisando["resultado"] = usuario.objects.filter(nome__istartswith=letra_selecionada)
         
-    else:  # Se um nome foi pesquisado
+    else:
         h3 = f"Resultado da Pesquisa: '{nome_pesquisado}'"
         pesquisando["resultado"] = usuario.objects.filter(nome__iexact=nome_pesquisado)
-         
-    return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar', 'pesquisando': pesquisando, 'h3':h3, "data_formatada":data_formatada})
+    
+    if request.method == 'POST':
+        user_id = request.POST.get("id")
+        if user_id:
+            try:
+                user = usuario.objects.get(id=user_id)
+                user.nome = request.POST.get("nome")
+                user.data_nascimento = request.POST.get("data_nascimento")
+                user.email = request.POST.get("email")
+                
+                # Buscando o objeto país correspondente ao nome enviado no formulário
+                nome_pais = request.POST.get("pais")
+                pais_obj = pais.objects.get(nome=nome_pais)
+                user.pais = pais_obj
+                novo_cadastro = usuario(nome=user.nome, data_nascimento=user.data_nascimento, email=user.email, pais=user.pais)
+                novo_cadastro.save()
+                
+                # Se a atualização for bem-sucedida, redirecione para a página de atualização
+                usuarios = usuario.objects.all()
+                paises = pais.objects.all() 
+                return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar', 'usuarios': usuarios, 'pesquisando': pesquisando, 'h3': h3, "data_formatada": data_formatada, "paises":paises})
+            except usuario.DoesNotExist:
+                return HttpResponseBadRequest("Usuário não encontrado")
+    
+    # Restante do código permanece o mesmo
+    usuarios = usuario.objects.all()
+    paises = pais.objects.all() 
+    return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar', 'usuarios': usuarios, 'pesquisando': pesquisando, 'h3': h3, "data_formatada": data_formatada, "paises":paises})
 
 def deletar(request):
     pesquisando = {}
