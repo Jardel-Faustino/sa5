@@ -102,10 +102,11 @@ def atualizar(request):
                 
                 # Buscando o objeto país correspondente ao nome enviado no formulário
                 nome_pais = request.POST.get("pais")
-                pais_obj = pais.objects.get(nome=nome_pais)
-                user.pais = pais_obj
-                novo_cadastro = usuario(nome=user.nome, data_nascimento=user.data_nascimento, email=user.email, pais=user.pais)
-                novo_cadastro.save()
+                if nome_pais:
+                    pais_obj = pais.objects.get(nome=nome_pais)
+                    user.pais = pais_obj
+                
+                user.save()
                 
                 # Se a atualização for bem-sucedida, redirecione para a página de atualização
                 usuarios = usuario.objects.all()

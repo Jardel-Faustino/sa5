@@ -47,20 +47,20 @@
                         </table>
                         <!-- CAEp Cadastrar, Atualizar, Deletar e Pesquisar-->
                         <!-- Botão de atualização -->
-                        <button class="caep" onclick="document.getElementById('formAtualizacao{{ usuario.id }}').style.display = 'block'">Atualizar</button><br><br>
+                        <button class="caep" onclick="document.getElementById('formAtualizacao{{ usuario.id }}').style.display = 'block'">Editar</button><br><br>
                         <!-- Formulário de atualização -->
                             <!-- Formulário de atualização -->
                         <form id="formAtualizacao{{ usuario.id }}" action="{% url 'atualizar' %}" method="post" style="display: none;">
                             {% csrf_token %}
                             <!-- Campos do formulário de atualização -->
                             <label for="nome" class="nb">Nome:</label>
-                            <input type="text" id="nome" class="caep" name="nome" value="{{ user.nome }}" required><br><br>
+                            <input type="text" id="nome" class="caep" name="nome" value="{{ usuario.nome }}" required><br><br>
                             
                             <label for="data_nascimento" class="nb">Data de Nascimento:</label>
-                            <input type="date" id="data_nascimento" class="caep" name="data_nascimento" value="{{ data_nascimento_str }}" required><br><br>
+                            <input type="date" id="data_nascimento" class="caep" name="data_nascimento" value="{{ usuario.data_nascimento|date:'Y-m-d' }}" required><br><br>
                             
                             <label for="email" class="nb">E-mail:</label>
-                            <input type="email" id="email" class="caep" name="email" value="{{ user.email }}" required><br><br>
+                            <input type="email" id="email" class="caep" name="email" value="{{ usuario.email }}" required><br><br>
                             
                             <div class="email_e">
                                 {% if email_erro %}
@@ -76,7 +76,7 @@
                                 {% endfor %}
                             </select><br><br>
                             
-                            <input type="submit" class="caep" value="Atualizar"><br><br> <!-- Botão para enviar o formulário -->
+                            <button type="submit" name="id" value="{{ usuario.id }}" class="caep">Salvar Alterações</button><br><br> <!-- Botão para enviar o formulário -->
                         </form>                 
                     {% endfor %}
                 {% else %}
