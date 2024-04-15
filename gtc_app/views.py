@@ -1,47 +1,21 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from .models import usuario, pais
 from django.http import HttpResponseBadRequest
-from django.urls import reverse
-from datetime import datetime
 
 # Criar as Visualizações das Rotas do nosso Sistema de Cadastro GTC.
 def menu (request):
     return render(request, "gtc_app/rotas/menu.html")
 
-def principal (request):
-    global data_formatada
-
+def principal(request):
     # Obtendo os usuários ordenados por ID
     usuarios = usuario.objects.all().order_by('-id')[:10]
-    
-    # Mapeamento dos meses em português
-    meses = {
-        1: "Janeiro",
-        2: "Fevereiro",
-        3: "Março",
-        4: "Abril",
-        5: "Maio",
-        6: "Junho",
-        7: "Julho",
-        8: "Agosto",
-        9: "Setembro",
-        10: "Outubro",
-        11: "Novembro",
-        12: "Dezembro"
-    }
 
-    # Formatando a data de criação de cada usuário
+    mes_p = meses()
+    # Adicionando o nome do mês em português à cada usuário
     for user in usuarios:
-        data_formatada = "{}/{}/{}".format(
-            user.data_nascimento.day,
-            meses[user.data_nascimento.month],
-            user.data_nascimento.year
-        )
+        user.mes_nascimento = mes_p[user.data_nascimento.strftime('%B')]
 
-    # Armazenar data_formatada na sessão do usuário
-    request.session['data_formatada'] = data_formatada
-
-    return render(request, "gtc_app/global/principal.html", {'pagina_ativa': 'principal', 'usuarios': usuarios, "data_formatada":data_formatada})
+    return render(request, "gtc_app/global/principal.html", {'pagina_ativa': 'principal', 'usuarios': usuarios})
 
 def cadastrar(request):
 
@@ -73,7 +47,6 @@ def cadastrar(request):
 
 def atualizar(request):
     pesquisando = {}
-    data_formatada = request.session.get('data_formatada', None)
 
     nome_pesquisado = request.POST.get("nome_pes") if request.method == 'POST' else request.GET.get("nome", "")
     letra_selecionada = request.GET.get("letra", "").lower()
@@ -115,14 +88,17 @@ def atualizar(request):
             except usuario.DoesNotExist:
                 return HttpResponseBadRequest("Usuário não encontrado")
     
-    # Restante do código permanece o mesmo
-    usuarios = usuario.objects.all()
+    usuarios = pesquisando['resultado']
+    mes_p = meses()
+    # Adicionando o nome do mês em português à cada usuário
+    for user in usuarios:
+        user.mes_nascimento = mes_p[user.data_nascimento.strftime('%B')]
+        
     paises = pais.objects.all() 
-    return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar', 'usuarios': usuarios, 'pesquisando': pesquisando, 'h3': h3, "data_formatada": data_formatada, "paises":paises})
+    return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar', 'usuarios': usuarios, 'pesquisando': pesquisando, 'h3': h3,  "paises":paises})
 
 def deletar(request):
     pesquisando = {}
-    data_formatada = request.session.get('data_formatada', None)
     
     nome_pesquisado = request.POST.get("nome") if request.method == 'POST' else request.GET.get("nome", "")
     letra_selecionada = request.GET.get("letra", "").lower()  # Obtém a letra selecionada, convertendo para minúsculo
@@ -149,13 +125,17 @@ def deletar(request):
             except usuario.DoesNotExist:
                 return HttpResponseBadRequest("Usuário não encontrado")
 
-    usuarios = usuario.objects.all() 
-    return render(request, "gtc_app/rotas/deletar.html", {'pagina_ativa': 'deletar', 'usuarios': usuarios, 'pesquisando': pesquisando, 'h3': h3, "data_formatada":data_formatada})
+    usuarios = pesquisando['resultado']
+    mes_p = meses()
+    # Adicionando o nome do mês em português à cada usuário
+    for user in usuarios:
+        user.mes_nascimento = mes_p[user.data_nascimento.strftime('%B')]
+        
+    return render(request, "gtc_app/rotas/deletar.html", {'pagina_ativa': 'deletar', 'usuarios': usuarios, 'pesquisando': pesquisando, 'h3': h3})
 
 
 def pesquisar(request):
     pesquisando = {}
-    data_formatada = request.session.get('data_formatada', None)
     
     nome_pesquisado = request.POST.get("nome") if request.method == 'POST' else request.GET.get("nome", "")
     letra_selecionada = request.GET.get("letra", "").lower()  # Obtém a letra selecionada, convertendo para minúsculo
@@ -164,6 +144,7 @@ def pesquisar(request):
     if not nome_pesquisado and not letra_selecionada:  # Se tanto o campo de pesquisa quanto a letra selecionada estiverem vazios
         h3 = "Lista de Usuários"
         pesquisando["resultado"] = usuario.objects.all()  # Obtém todos os usuários
+        
 
     elif letra_selecionada:  # Se uma letra foi selecionada
         h3 = f"Lista de Usuários com a Letra '{request.GET.get('letra', "").upper()}'"# Converte para maiúsculas
@@ -172,8 +153,30 @@ def pesquisar(request):
     else:  # Se um nome foi pesquisado
         h3 = f"Resultado da Pesquisa: '{nome_pesquisado}'"
         pesquisando["resultado"] = usuario.objects.filter(nome__iexact=nome_pesquisado)
-         
-    return render(request, "gtc_app/rotas/pesquisar.html", {'pagina_ativa': 'pesquisar', 'pesquisando': pesquisando, 'h3':h3, "data_formatada":data_formatada})
+        
+    usuarios = pesquisando['resultado']
+    mes_p = meses()
+    # Adicionando o nome do mês em português à cada usuário
+    for user in usuarios:
+        user.mes_nascimento = mes_p[user.data_nascimento.strftime('%B')]
+    
+    return render(request, "gtc_app/rotas/pesquisar.html", {'pagina_ativa': 'pesquisar', 'pesquisando': pesquisando, 'h3':h3, 'usuarios': usuarios})
 
 def alfabeto(request):
     return render(request, "gtc_app/rotas/alfabeto.html")
+
+def meses():
+    return {
+        'January': 'Janeiro',
+        'February': 'Fevereiro',
+        'March': 'Março',
+        'April': 'Abril',
+        'May': 'Maio',
+        'June': 'Junho',
+        'July': 'Julho',
+        'August': 'Agosto',
+        'September': 'Setembro',
+        'October': 'Outubro',
+        'November': 'Novembro',
+        'December': 'Dezembro',
+    }
