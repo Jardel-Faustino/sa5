@@ -121,7 +121,7 @@ table {
 
 td {
     max-height: 5vh;
-    background-color: rgb(60, 60, 60);
+    background-color:aliceblue;
     border : 2px ridge rgb(48, 204, 252);
     text-align: center;
 }
@@ -130,24 +130,48 @@ td {
 .nome {
     max-width: 40%;
     height: 8vh;
+    background-color: rgb(30, 173, 216); 
+}
+.nome0{
+    max-width: 40%;
+    height: 8vh;
+    background-color:aliceblue;
 }
 
 /* Estilo para a célula 'Data de Nascimento' */
 .data {
     max-width: 20%;
     height: 8vh;
+    background-color: rgb(30, 173, 216); 
 }
 
+.data0 {
+    max-width: 20%;
+    height: 8vh;
+    background-color:aliceblue;
+}
 /* Estilo para a célula 'Email' */
 .email {
     max-width: 30%;
     height: 8vh;
+    background-color: rgb(30, 173, 216); 
+}
+.email0 {
+    max-width: 30%;
+    height: 8vh;
+    background-color:aliceblue;
 }
 
 /* Estilo para a célula 'País' */
 .pais {
     max-width: 10%;
     height: 8vh;
+    background-color: rgb(30, 173, 216); 
+}
+.pais0 {
+    max-width: 10%;
+    height: 8vh;
+    background-color:aliceblue;
 }
 /* Estilo para a link 'Volta ao topo' */
 .topo {
@@ -174,6 +198,8 @@ td {
 .caep{
     width: 70vw;
     margin-left: 9.5vw;
+    background-color:aliceblue;
+    border: 2px ridge rgb(48, 204, 252);
 }
 
 /* Cadastrar */
@@ -232,16 +258,49 @@ td {
 }
 /* Alfabeto */
 .alfabeto{
-    width: 70vw;
+    width: 80vw;
     margin-left: 9.5vw;
+}
+.letras{
+    width: 10vw;
+}
+.email_e > p{
+    width: 70vw;
+    height: 5vh;
+    background-color: rgb(20, 173, 216);
+    border: 2px ridge rgb(48, 204, 252);
+    margin-left: 9.5vw;
+    padding: 0.5vh 1vw;
+    text-align: center;
+    color: rgb(30, 30, 30);  
 }
 
 /* Inicialmente, ocultar as divs */
 .sucesso{
     display: none; /* Oculta as divs de sucesso e falha */
 }
+.sucesso > p {
+    width: 30vw;
+    height: 5vh;
+    background-color: rgb(20, 173, 216);
+    border: 2px ridge rgb(48, 204, 252);
+    margin-left: 9.5vw;
+    padding: 0.5vh 1vw;
+    text-align: center;
+    color: rgb(30, 30, 30);
+}
 .falha{
     display: none; /* Oculta as divs de sucesso e falha */
+}
+.falha > p {
+    width: 25vw;
+    height: 5vh;
+    background-color: rgb(20, 173, 216);
+    border: 2px ridge rgb(48, 204, 252);
+    margin-left: 9.5vw;
+    padding: 0.5vh 1vw;
+    text-align: center;
+    color: rgb(30, 30, 30);
 }
 /* Animar a aparência e o desaparecimento das divs */
 @keyframes fade-in {

@@ -32,15 +32,15 @@ def cadastrar(request):
         if usuario.objects.filter(email=email).exists():
             paises = pais.objects.all() 
             email_erro = "Este 'E-MAIL' já está em uso. Por favor, escolha outro e-mail."
-            mensagem_erro = "Falha no Cadastramento!!!"
+            mensagem_erro = "Falha no Cadastro!"
         else:
             try:
                 pais_obj = pais.objects.get(nome=nome_pais)
                 novo_usuario = usuario(nome=nome, data_nascimento=data_nascimento, email=email, pais=pais_obj)
                 novo_usuario.save()
-                mensagem_sucesso = "Cadastro Realizado com Sucesso!!!"
+                mensagem_sucesso = "Cadastro Realizado com Sucesso!"
             except Exception as e:
-                mensagem_erro = f"Falha no Cadastramento: {str(e)}"
+                mensagem_erro = f"Falha no Cadastro!: {str(e)}"
 
     paises = pais.objects.all() 
     return render(request, 'gtc_app/rotas/cadastrar.html', {'pagina_ativa': 'cadastrar', 'paises': paises, 'mensagem_erro': mensagem_erro, "email_erro":email_erro, "mensagem_sucesso":mensagem_sucesso})
@@ -72,19 +72,17 @@ def atualizar(request):
                 user.nome = request.POST.get("nome")
                 user.data_nascimento = request.POST.get("data_nascimento")
                 user.email = request.POST.get("email")
-                
-                # Buscando o objeto país correspondente ao nome enviado no formulário
+
                 nome_pais = request.POST.get("pais")
                 if nome_pais:
                     pais_obj = pais.objects.get(nome=nome_pais)
                     user.pais = pais_obj
                 
-                user.save()
-                
+                user.save()         
                 # Se a atualização for bem-sucedida, redirecione para a página de atualização
                 usuarios = usuario.objects.all()
                 paises = pais.objects.all() 
-                return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar', 'usuarios': usuarios, 'pesquisando': pesquisando, 'h3': h3, "data_formatada": data_formatada, "paises":paises})
+                return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar', 'usuarios': usuarios, 'pesquisando': pesquisando, 'h3': h3, "paises":paises})
             except usuario.DoesNotExist:
                 return HttpResponseBadRequest("Usuário não encontrado")
     

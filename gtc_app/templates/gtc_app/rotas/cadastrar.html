@@ -23,13 +23,13 @@
                 <input type="date" id="data_nascimento" class="caep" name="data_nascimento" required><br><br> <!-- Campo de entrada para a data de nascimento -->
 
                 <label for="email" class="nb">E-mail:</label> <!-- Rótulo para o campo de e-mail -->
-                <input type="email" id="email" class="caep" name="email" required><br><br> <!-- Campo de entrada para o e-mail -->
+                <input type="email" id="email" class="caep" name="email" required> <!-- Campo de entrada para o e-mail -->
 
                 <div class="email_e">
                     {% if email_erro %}
                         <p>{{ email_erro }}</p>
                     {% endif %}
-                </div>
+                </div><br>
 
                 <label for="pais" class="nb">País que deseja trabalhar:</label>
                 <select id="pais" class="caep" name="pais" required>
@@ -39,7 +39,7 @@
                     {% endfor %}
                 </select><br><br>
 
-                <input type="submit" class="caep" value="Cadastrar"><br><br> <!-- Botão para enviar o formulário -->
+                <input type="submit" class="caep" value="Cadastrar"><br> <!-- Botão para enviar o formulário -->
 
                 <!-- Div para mensagem de sucesso -->
                 <div id="sucesso" class="sucesso {% if mensagem_sucesso %}show{% endif %}">
