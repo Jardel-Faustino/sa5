@@ -84,7 +84,7 @@ def atualizar(request):
                 # Se a atualização for bem-sucedida, redirecione para a página de atualização
                 usuarios = usuario.objects.all()
                 paises = pais.objects.all() 
-                return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar', 'usuarios': usuarios, 'pesquisando': pesquisando, 'h3': h3, "data_formatada": data_formatada, "paises":paises})
+                return render(request, "gtc_app/rotas/atualizar.html", {'pagina_ativa': 'atualizar', 'usuarios': usuarios, 'pesquisando': pesquisando, 'h3': h3, "paises":paises})
             except usuario.DoesNotExist:
                 return HttpResponseBadRequest("Usuário não encontrado")
     
