@@ -16,18 +16,18 @@ def principal (request):
     
     # Mapeamento dos meses em português
     meses = {
-        1: "janeiro",
-        2: "fevereiro",
-        3: "março",
-        4: "abril",
-        5: "maio",
-        6: "junho",
-        7: "julho",
-        8: "agosto",
-        9: "setembro",
-        10: "outubro",
-        11: "novembro",
-        12: "dezembro"
+        1: "Janeiro",
+        2: "Fevereiro",
+        3: "Março",
+        4: "Abril",
+        5: "Maio",
+        6: "Junho",
+        7: "Julho",
+        8: "Agosto",
+        9: "Setembro",
+        10: "Outubro",
+        11: "Novembro",
+        12: "Dezembro"
     }
 
     # Formatando a data de criação de cada usuário
@@ -177,58 +177,3 @@ def pesquisar(request):
 
 def alfabeto(request):
     return render(request, "gtc_app/rotas/alfabeto.html")
-
-def cadastro(request):
-    user_id = request.GET.get("id")
-    
-    # Inicializar variáveis
-    user = None
-    data_nascimento_str = None
-    
-    # Se o ID do usuário foi fornecido, busque o usuário
-    if user_id:
-        user = get_object_or_404(usuario, id=user_id)
-        # Certifique-se de que o usuário tenha data de nascimento antes de tentar formatá-la
-        if user.data_nascimento:
-            data_nascimento_str = user.data_nascimento.strftime('%Y/%d/%m')
-    
-    mensagem_sucesso = None
-    mensagem_erro = None
-
-    if request.method == 'POST':
-        # Obter os dados do formulário
-        nome = request.POST.get("nome", "").capitalize()  # Garante que a primeira letra do nome seja maiúscula
-        data_nascimento = request.POST.get("data_nascimento", "")
-        email = request.POST.get("email", "")
-        nome_pais = request.POST.get("pais", "")
-
-        # Verifique se outro usuário já está usando o mesmo e-mail (exceto o próprio usuário atual)
-        if usuario.objects.filter(email=email).exclude(id=user_id).exists():
-            mensagem_erro = "Este 'E-MAIL' já está em uso por outro usuário. Por favor, escolha outro e-mail."
-        else:
-            try:
-                # Tentar obter o país com base no nome
-                pais_obj = pais.objects.get(nome=nome_pais)
-
-                # Converter `data_nascimento` para objeto datetime
-                try:
-                    data_nascimento = datetime.strptime(data_nascimento, '%Y/%d/%m')
-                except ValueError:
-                    raise ValidationErro("Data de nascimento inválida. Por favor, use o formato DD/MM/YYYY.")
-                
-                # Atualizar as informações do usuário
-                user.nome = nome
-                user.data_nascimento = data_nascimento
-                user.email = email
-                user.pais = pais_obj
-                user.save()
-
-                mensagem_sucesso = "Dados atualizados com sucesso!"
-            except Exception as e:
-                mensagem_erro = f"Falha na atualização: {str(e)}"
-
-    # Obtenha a lista de países para usar no template
-    paises = pais.objects.all()
-
-    # Renderize a página com os dados do usuário e outros dados necessários
-    return render(request, 'gtc_app/rotas/cadastro.html', {'pagina_ativa': 'atualizar', 'user': user, 'paises': paises, 'mensagem_erro': mensagem_erro, 'mensagem_sucesso': mensagem_sucesso, 'data_nascimento_str': data_nascimento_str})
