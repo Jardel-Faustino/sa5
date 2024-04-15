@@ -21,7 +21,35 @@
             <button type="button" onclick="window.location.href='{% url 'atualizar' %}'" class="caep">Limpar Pesquisa</button>        </form>
             <h3>Filtrar Usuários</h3>
             <!-- Alfabeto para filtrar por letra inicial -->
-            {% include "gtc_app/rotas/alfabeto.html" %}
+            <div class="alfabeto">
+                <a href="{% url 'atualizar' %}?letra=a" class="letras">A</a>
+                <a href="{% url 'atualizar' %}?letra=b" class="letras">B</a>
+                <a href="{% url 'atualizar' %}?letra=c" class="letras">C</a>
+                <a href="{% url 'atualizar' %}?letra=d" class="letras">D</a>
+                <a href="{% url 'atualizar' %}?letra=e" class="letras">E</a>
+                <a href="{% url 'atualizar' %}?letra=f" class="letras">F</a>
+                <a href="{% url 'atualizar' %}?letra=g" class="letras">G</a>
+                <a href="{% url 'atualizar' %}?letra=h" class="letras">H</a>
+                <a href="{% url 'atualizar' %}?letra=i" class="letras">I</a>
+                <a href="{% url 'atualizar' %}?letra=j" class="letras">J</a>
+                <a href="{% url 'atualizar' %}?letra=k" class="letras">K</a>
+                <a href="{% url 'atualizar' %}?letra=l" class="letras">L</a>
+                <a href="{% url 'atualizar' %}?letra=m" class="letras">M</a>
+                <a href="{% url 'atualizar' %}?letra=n" class="letras">N</a>
+                <a href="{% url 'atualizar' %}?letra=o" class="letras">O</a>
+                <a href="{% url 'atualizar' %}?letra=p" class="letras">P</a>
+                <a href="{% url 'atualizar' %}?letra=q" class="letras">Q</a>
+                <a href="{% url 'atualizar' %}?letra=r" class="letras">R</a>
+                <a href="{% url 'atualizar' %}?letra=s" class="letras">S</a>
+                <a href="{% url 'atualizar' %}?letra=t" class="letras">T</a>
+                <a href="{% url 'atualizar' %}?letra=u" class="letras">U</a>
+                <a href="{% url 'atualizar' %}?letra=v" class="letras">V</a>
+                <a href="{% url 'atualizar' %}?letra=w" class="letras">W</a>
+                <a href="{% url 'atualizar' %}?letra=x" class="letras">X</a>
+                <a href="{% url 'atualizar' %}?letra=y" class="letras">Y</a>
+                <a href="{% url 'atualizar' %}?letra=z" class="letras">Z</a>
+            </div>
+            
             
         
             {% if pesquisando %}

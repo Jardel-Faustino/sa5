@@ -20,7 +20,35 @@
             <button type="button" class="caep" onclick="window.location.href='{% url 'deletar' %}'" class="limpar">Limpar Pesquisa</button>        </form>
             <h3>Filtrar Usuários</h3>
             <!-- Alfabeto para filtrar por letra inicial -->
-            {% include "gtc_app/rotas/alfabeto.html" %}
+            <div class="alfabeto">
+                <a href="{% url 'deletar' %}?letra=a" class="letras">A</a>
+                <a href="{% url 'deletar' %}?letra=b" class="letras">B</a>
+                <a href="{% url 'deletar' %}?letra=c" class="letras">C</a>
+                <a href="{% url 'deletar' %}?letra=d" class="letras">D</a>
+                <a href="{% url 'deletar' %}?letra=e" class="letras">E</a>
+                <a href="{% url 'deletar' %}?letra=f" class="letras">F</a>
+                <a href="{% url 'deletar' %}?letra=g" class="letras">G</a>
+                <a href="{% url 'deletar' %}?letra=h" class="letras">H</a>
+                <a href="{% url 'deletar' %}?letra=i" class="letras">I</a>
+                <a href="{% url 'deletar' %}?letra=j" class="letras">J</a>
+                <a href="{% url 'deletar' %}?letra=k" class="letras">K</a>
+                <a href="{% url 'deletar' %}?letra=l" class="letras">L</a>
+                <a href="{% url 'deletar' %}?letra=m" class="letras">M</a>
+                <a href="{% url 'deletar' %}?letra=n" class="letras">N</a>
+                <a href="{% url 'deletar' %}?letra=o" class="letras">O</a>
+                <a href="{% url 'deletar' %}?letra=p" class="letras">P</a>
+                <a href="{% url 'deletar' %}?letra=q" class="letras">Q</a>
+                <a href="{% url 'deletar' %}?letra=r" class="letras">R</a>
+                <a href="{% url 'deletar' %}?letra=s" class="letras">S</a>
+                <a href="{% url 'deletar' %}?letra=t" class="letras">T</a>
+                <a href="{% url 'deletar' %}?letra=u" class="letras">U</a>
+                <a href="{% url 'deletar' %}?letra=v" class="letras">V</a>
+                <a href="{% url 'deletar' %}?letra=w" class="letras">W</a>
+                <a href="{% url 'deletar' %}?letra=x" class="letras">X</a>
+                <a href="{% url 'deletar' %}?letra=y" class="letras">Y</a>
+                <a href="{% url 'deletar' %}?letra=z" class="letras">Z</a>
+            </div>
+
             
         
             {% if pesquisando %}

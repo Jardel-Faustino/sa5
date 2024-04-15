@@ -162,9 +162,6 @@ def pesquisar(request):
     
     return render(request, "gtc_app/rotas/pesquisar.html", {'pagina_ativa': 'pesquisar', 'pesquisando': pesquisando, 'h3':h3, 'usuarios': usuarios})
 
-def alfabeto(request):
-    return render(request, "gtc_app/rotas/alfabeto.html")
-
 def meses():
     return {
         'January': 'Janeiro',

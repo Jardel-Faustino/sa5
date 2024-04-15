@@ -237,10 +237,12 @@ td {
 }
 
 /* Inicialmente, ocultar as divs */
-.sucesso, .falha {
+.sucesso{
     display: none; /* Oculta as divs de sucesso e falha */
 }
-
+.falha{
+    display: none; /* Oculta as divs de sucesso e falha */
+}
 /* Animar a aparência e o desaparecimento das divs */
 @keyframes fade-in {
     from { opacity: 1; } /* Define a opacidade inicial como 0 (totalmente transparente) */
